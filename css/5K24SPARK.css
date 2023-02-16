@@ -10,6 +10,7 @@ html, body {
 
 img{
   margin: 0 auto; /* center the qr code*/
+  margin-top: 15px;
 }
 
 body {
@@ -70,7 +71,7 @@ table.center {
 }
 
 .next, .previous {
-  font-size: 1em;
+  font-size: 1.3em;
   padding: 12px;
   background-color: #1E5482;
   color: #fff;
