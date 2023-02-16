@@ -189,12 +189,19 @@ input[type="text"] {
 }
 
 #autotable2 td.field {
-  width: 300px;
+  width: 200px;
   text-align: left;
+}
+
+#autotable2 td {
+  margin-left: auto;
+  white-space: nowrap;
+  margin-right: auto;
 }
 
 #autotable2 td.field input[type=radio] {
   margin: 5px ;
+  margin-left: 20px;
   transform: scale(1.5);
   -webkit-transform: scale(1.5); /* for Safari & Chrome */
 }
