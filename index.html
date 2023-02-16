@@ -1,14 +1,313 @@
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>TEST</h1>
-    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Accusantium voluptate magni ea fugiat consequuntur itaque, saepe illo pariatur quos earum necessitatibus, eligendi molestiae. Fugiat, eius? Quia cupiditate eligendi quo aspernatur.</p>
-    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Accusantium voluptate magni ea fugiat consequuntur itaque, saepe illo pariatur quos earum necessitatibus, eligendi molestiae. Fugiat, eius? Quia cupiditate eligendi quo aspernatur.</p>
-    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Accusantium voluptate magni ea fugiat consequuntur itaque, saepe illo pariatur quos earum necessitatibus, eligendi molestiae. Fugiat, eius? Quia cupiditate eligendi quo aspernatur.</p>
-</body>
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>5K24 SPARK</title>
+        <link rel="stylesheet" href="css/5K24SPARK.css">
+        <link rel="icon" href="favicon.ico">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    </head>
+    <body>
+        <div>
+            <h1>5K24 SPARK</h1>
+            <h2 id="Name">Pre-Match</h2>
+        </div>
+
+        <div id="qrcode"></div>
+
+        <!-- Pre Match Page -->
+        <form id = 'myForm'>
+                <table id="0">
+                    <tbody>
+                        <tr>
+                            <td class="preMatch">Name</td>
+                            <td class="field">
+                                <select id='pg0'>
+                                    <option value="default">Select</option>
+                                    <option value="Josh">Josh</option>
+                                    <option value="Brad">Brad</option>
+                                    <option value="Tiet">Tiet</option>
+                                </select>*
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="preMatch">Match # &nbsp;</td>
+                            <td class="field">
+                                <input type="text" id='pg0'>*
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="preMatch">Team #</td>
+                            <td class="field">
+                                <input type="text" id='pg0'>*
+                            </td>
+                        </tr>
+                    </tbody>        
+                </table>
+
+            <!-- Auto Page -->
+            <div>
+                <body>
+                    <table id="1" style="display: none" class="center scoring">
+                        <tbody>
+                            <tr>
+                                <td>&nbsp;</td>
+                                <td>&nbsp;</td>
+                                <td class="auto textcenter">Cones</td>
+                                <td>&nbsp;</td>
+                                <td>&nbsp;</td>
+                                <td class="auto textcenter">Cubes</td>
+                            </tr>
+                            <tr>
+                                <td class="auto">High</td>
+                                <td class="counter">
+                                    <button class="minus" type="button">-</button>
+                                </td>
+                                <td>
+                                    <input type="number" class="score" id="pg1" value="0">
+                                </td>
+                                <td class="counter">
+                                    <button class="plus" type="button">+</button>
+                                </td>
+                                <td class="counter">
+                                    <button class="minus" type="button">-</button>
+                                </td>
+                                <td>
+                                    <input type="number"  class="score"id="pg1" value="0">
+                                </td>
+                                <td class="counter">
+                                    <button class="plus" type="button">+</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="auto">Medium</td>
+                                <td class="counter">
+                                    <button class="minus" type="button">-</button>
+                                </td>
+                                <td >
+                                    <input type="number" class="score" id="pg1" value="0">
+                                </td>
+                                <td class="counter">
+                                    <button class="plus" type="button">+</button>
+                                </td>
+                                <td class="counter">
+                                    <button class="minus" type="button">-</button>
+                                </td>
+                                <td>
+                                    <input type="number" class="score"id="pg1" value="0">
+                                </td>
+                                <td class="counter">
+                                    <button class="plus" type="button">+</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="auto">Low</td>
+                                <td id="minus">
+                                    <button class="minus" type="button">-</button>
+                                </td>
+                                <td>
+                                    <input type="number" class="score" id="pg1" value="0">
+                                </td>
+                                <td class="counter">
+                                    <button class="plus" type="button">+</button>
+                                </td>
+                                <td class="counter">
+                                    <button class="minus" type="button">-</button>
+                                </td>
+                                <td>
+                                    <input type="number" class="score" id="pg1" value="0">
+                                </td>
+                                <td class="counter">
+                                    <button class="plus" type="button">+</button>
+                                </td>
+                            </tr>
+                        </tb>
+                    </table>
+                    <table id="autotable" style="display: none" class="center">
+                        <tr>
+                            <td>&nbsp;</td>
+                            <td>&nbsp;</td>
+                            <td><h3 class="textcenter">Yes</h3></td>
+                            <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                            <td><h3 class="textcenter">No</h3></td>
+                        </tr>
+                        <tr>
+                            <td class="auto">Left Community *</td>
+                            <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                            <td class="field">
+                                <input type='checkbox' class="checkoption" id='pg1' value="Yes">
+                            </td>
+                            <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                            <td class="field">
+                                <input type='checkbox' class="checkoption" id='pg1' value="No">
+                            </td>
+                        </tr>
+                    </table>
+                    <br><br>
+                    <table id="autotable2" style="display: none" class="center">
+                        <tr>
+                            <td class="auto">Charging Station *</td>
+                            <td>&nbsp;</td>
+                            <td class="field">
+                                <input type="radio" value="DNE" name="autoCharging" id='pg1'><label class="radioLabel" for="DNE">Docked (Not Balanced)</label>
+                                <br>
+                                <input type="radio" value="DE" name="autoCharging" id='pg1'><label class="radioLabel" for="DE">Balanced</label>
+                                <br>
+                                <input type="radio" value="NA" name="autoCharging" id='pg1'><label class="radioLabel" for="NA">Not Attempted</label>
+                            </td>
+                        </tr>
+                    </table>
+                </body>
+            </div>
+
+            <!-- Tele Page -->
+            <div>
+                <body>
+                    <table id="2" style="display: none" class="center scoring">
+                        <tbody>
+                            <tr>
+                                <td>&nbsp;</td>
+                                <td>&nbsp;</td>
+                                <td class="tele textcenter">Cones</td>
+                                <td>&nbsp;</td>
+                                <td>&nbsp;</td>
+                                <td class="tele textcenter">Cubes</td>
+                            </tr>
+                            <tr>
+                                <td class="tele">High</td>
+                                <td class="counter">
+                                    <button class="minus" type="button">-</button>
+                                </td>
+                                <td>
+                                    <input type="number" class="score" id="pg1" value="0">
+                                </td>
+                                <td class="counter">
+                                    <button class="plus" type="button">+</button>
+                                </td>
+                                <td class="counter">
+                                    <button class="minus" type="button">-</button>
+                                </td>
+                                <td>
+                                    <input type="number"  class="score"id="pg1" value="0">
+                                </td>
+                                <td class="counter">
+                                    <button class="plus" type="button">+</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="tele">Medium</td>
+                                <td class="counter">
+                                    <button class="minus" type="button">-</button>
+                                </td>
+                                <td >
+                                    <input type="number" class="score" id="pg1" value="0">
+                                </td>
+                                <td class="counter">
+                                    <button class="plus" type="button">+</button>
+                                </td>
+                                <td class="counter">
+                                    <button class="minus" type="button">-</button>
+                                </td>
+                                <td>
+                                    <input type="number" class="score"id="pg1" value="0">
+                                </td>
+                                <td class="counter">
+                                    <button class="plus" type="button">+</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="tele">Low</td>
+                                <td id="minus">
+                                    <button class="minus" type="button">-</button>
+                                </td>
+                                <td>
+                                    <input type="number" class="score" id="pg1" value="0">
+                                </td>
+                                <td class="counter">
+                                    <button class="plus" type="button">+</button>
+                                </td>
+                                <td class="counter">
+                                    <button class="minus" type="button">-</button>
+                                </td>
+                                <td>
+                                    <input type="number" class="score" id="pg1" value="0">
+                                </td>
+                                <td class="counter">
+                                    <button class="plus" type="button">+</button>
+                                </td>
+                            </tr>
+                        </tbody>        
+                    </table>
+                    <table id="teletable" style="display: none">
+                        <br>
+                        <tr>
+                            <td class="tele"><label>Pick up location *</label>
+                            <td>&nbsp;</td>
+                            <td>
+                                <input type="radio" id="pg2" name="pickup" value="G"><label class="radioLabel">Ground</label>
+                                <br>
+                                <input type="radio" id="pg2" name="pickup" value="SS"><label class="radioLabel">Single Substation</label>  
+                                <br>
+                                <input type="radio" id="pg2" name="pickup" value="DS"><label class="radioLabel">Double Substation</label> 
+                            </td> 
+                            </td>
+                        </tr>
+                    </table>
+                </body>
+            </div> 
+
+            <!-- Endgame Page -->
+            <div>
+                <body>
+                    <table id="3" style="display: none">
+                        <tbody>
+                            <tr>
+                                <td class="end">Climb Status *</td>
+                                <td class="field">
+                                    <input type="radio" value="eP" id="pg3" name="endCharging" ><label for="PARK" class="radioLabel">Parked</label>
+                                    <br>
+                                    <input type="radio" value="eDNE" id="pg3" name="endCharging" ><label for="DNE" class="radioLabel">Docked (Not Balanced)</label>
+                                    <br>
+                                    <input type="radio" value="eDE" id="pg3" name="endCharging" ><label for="DE" class="radioLabel">Balanced</label>
+                                    <br>
+                                    <input type="radio" value="eNA" id="pg3" name="endCharging" ><label for="NA" class="radioLabel">Not Attempted</label>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>&nbsp;</td>
+                                <td>&nbsp;</td>
+                                <td>&nbsp;</td>
+                            </tr>
+                            <tr>
+                                <td class="end">Dead/Immobilized? </td>
+                                <td class="field">
+                                    <input type="checkbox" id="pg3" value="Yes">
+                                </td>
+                            </tr>
+
+                        </tbody>        
+                    </table>
+                </body>
+            </div>
+
+            <!-- QR Code Page -->
+            <div>
+                <body>
+                    <table id="4" style="display: none">
+                        <tbody>
+                            <div id="qrcode" style="display: none"></div>
+                            <br>
+                        </tbody>        
+                    </table>
+                </body>
+            </div>
+        </form>
+        
+        <input type="button" id="Next" value="Next" onclick="goNext()" class="next">
+        <input type="button" id="Previous" value="Previous" onclick="goPrevious()" style="display: none" class="previous">
+        <input type="button" id="newMatch" value="New Match" onclick="newMatch()" style="display: none" class="new">
+        
+        <script src ="js/jquery-3.6.3.min.js"></script>
+        <script type="text/javascript" src="js/qrcode.min.js"></script> 
+        <script src ="js/5K24SPARK.js"></script>
+    </body>
 </html>
