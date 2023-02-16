@@ -1,10 +1,15 @@
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
 #qrcode{
-  display: none;
-  margin: 0 auto;
+  display: none; /* set qrcode to display as none, until it is needed*/
+  margin: 0 auto; /* center the qr code*/
 }
 
 img{
-  margin: 0 auto;
+  margin: 0 auto; /* center the qr code*/
 }
 
 body {
@@ -21,6 +26,7 @@ body {
 }
 
 h1 {
+  margin: 0;
   font-size: 2em; /* set font size for heading */
   text-align: center; /* center heading */
   margin-bottom: 20px; /* add margin below heading */
@@ -31,8 +37,8 @@ h1 {
 }
 
 h2 {
-  font-size: 1.75em;
-  text-align: center;
+  font-size: 1.75em; /* set font size for heading 2 */
+  text-align: center; /* center heading 2*/
 }
 
 p {
@@ -59,12 +65,12 @@ table.center {
 }
 
 .preMatch {
-  font-size: 30px;
+  font-size: 2em;
   margin: 10px;
 }
 
 .next, .previous {
-  font-size: 24px;
+  font-size: 1em;
   padding: 12px;
   background-color: #1E5482;
   color: #fff;
@@ -136,14 +142,12 @@ input[type="text"] {
   border-radius: 3px;
   background-color: #f2f2f2;
   height: 25px;
-  font-size: 20px;
-  
+  font-size: 1em;
 }
 
 .match-table{
   display: flex;
   align-items: center;
-  font-size: 20px;
 }
 
 .match-table button {
@@ -155,7 +159,7 @@ input[type="text"] {
   border-radius: 3px;
   cursor: pointer;
   padding: 8px 10px;
-  font-size: 13px;
+  font-size: 1em;
   font-weight: bold;
 }
 
@@ -170,7 +174,7 @@ input[type="text"] {
 #autotable, #autotable2 {
   font-family: 'Arial', sans-serif;
   border-collapse: collapse;
-  font-size: 16px;
+  font-size: 1em;
   margin-bottom: 5px;
   
 }
