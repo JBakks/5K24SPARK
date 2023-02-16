@@ -100,7 +100,7 @@ function goNext() {
         }else if(count == 2){
             autoTable.style.display = "none";
             autoTableTwo.style.display = "none";
-            teleTable.style.display = "block";
+            teleTable.style.display = "table";
             document.getElementById("Name").innerHTML = "Tele-Op";
         }else if(count == 3){
             teleTable.style.display = "none";
@@ -123,7 +123,7 @@ function goPrevious() {
     current.style.display = "none";
     count -= 1;
     var previous = document.getElementById(count.toString());
-    previous.style.display = "";
+    previous.style.display = "table";
     
     if(count == 0){
         document.getElementById("Name").innerHTML = "Pre-Match";
@@ -132,12 +132,12 @@ function goPrevious() {
         autoTableTwo.style.display = "none";
     }else if(count == 1){
         document.getElementById("Name").innerHTML = "Auto";
-        autoTable.style.display = "block";
-        autoTableTwo.style.display = "block";
+        autoTable.style.display = "table";
+        autoTableTwo.style.display = "table";
         teleTable.style.display = "none";
     }else if(count == 2){
         document.getElementById("Name").innerHTML = "Tele-Op";
-        teleTable.style.display = "block";
+        teleTable.style.display = "table";
     }else if(count == 3){
         document.getElementById("Name").innerHTML = "End Game";
         document.getElementById("Next").style.display = "inline";

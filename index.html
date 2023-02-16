@@ -52,60 +52,37 @@
                         <tbody>
                             <tr>
                                 <td>&nbsp;</td>
-                                <td>&nbsp;</td>
                                 <td>Cones</td>
-                                <td>&nbsp;</td>
-                                <td>&nbsp;</td>
                                 <td>Cubes</td>
                             </tr>
                             <tr>
                                 <td>High</td>
-                                <td><button class="minus" type="button">-</button></td>
-                                <td><input type="number" id="pg1" value="0"></td>
-                                <td><button class="plus" type="button">+</button></td>
-                                <td><button class="minus" type="button">-</button></td>
-                                <td><input type="number" id="pg1" value="0"></td>
-                                <td><button class="plus" type="button">+</button></td>
+                                <td><button class="minus" type="button">-</button><input type="number" id="pg1" value="0"><button class="plus" type="button">+</button></td>
+                                <td><button class="minus" type="button">-</button><input type="number" id="pg1" value="0"><button class="plus" type="button">+</button></td>
                             </tr>
                             <tr>
                                 <td>Medium</td>
-                                <td><button class="minus" type="button">-</button></td>
-                                <td><input type="number" id="pg1" value="0"></td>
-                                <td><button class="plus" type="button">+</button></td>
-                                <td><button class="minus" type="button">-</button></td>
-                                <td><input type="number" id="pg1" value="0"></td>
-                                <td><button class="plus" type="button">+</button></td>
+                                <td><button class="minus" type="button">-</button><input type="number" id="pg1" value="0"><button class="plus" type="button">+</button></td>
+                                <td><button class="minus" type="button">-</button><input type="number" id="pg1" value="0"><button class="plus" type="button">+</button></td>
                             </tr>
                             <tr>
                                 <td class="auto">Low</td>
-                                <td id="minus"><button class="minus" type="button">-</button></td>
-                                <td><input type="number" id="pg1" value="0"></td>
-                                <td class="counter"><button class="plus" type="button">+</button></td>
-                                <td class="counter"><button class="minus" type="button">-</button></td>
-                                <td><input type="number" id="pg1" value="0"></td>
-                                <td class="counter"><button class="plus" type="button">+</button></td>
+                                <td><button class="minus" type="button">-</button><input type="number" id="pg1" value="0"><button class="plus" type="button">+</button></td>
+                                <td><button class="minus" type="button">-</button><input type="number" id="pg1" value="0"><button class="plus" type="button">+</button></td>
                             </tr>
                         </tb>
                     </table>
 
-                    <table id="autotable" style="display: none" class="center">
+                    <table id="autotable" style="display: none">
                         <tr>
                             <td>&nbsp;</td>
-                            <td>&nbsp;</td>
                             <td><h3 class="textcenter">Yes</h3></td>
-                            <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
                             <td><h3 class="textcenter">No</h3></td>
                         </tr>
                         <tr>
                             <td class="auto">Left Community *</td>
-                            <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
-                            <td class="field">
-                                <input type='checkbox' class="checkoption" id='pg1' value="Yes">
-                            </td>
-                            <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
-                            <td class="field">
-                                <input type='checkbox' class="checkoption" id='pg1' value="No">
-                            </td>
+                            <td class="field"><input type='checkbox' class="checkoption" id='pg1' value="Yes"></td>
+                            <td class="field"><input type='checkbox' class="checkoption" id='pg1' value="No"></td>
                         </tr>
                     </table>
                     <br><br>
@@ -115,7 +92,7 @@
                             <td>&nbsp;</td>
                             <td class="field">
                                 <input type="radio" value="DNE" name="autoCharging" id='pg1'><label class="radioLabel" for="DNE">Docked (Not Balanced)</label>
-                                <br>
+                                <br>                                
                                 <input type="radio" value="DE" name="autoCharging" id='pg1'><label class="radioLabel" for="DE">Balanced</label>
                                 <br>
                                 <input type="radio" value="NA" name="autoCharging" id='pg1'><label class="radioLabel" for="NA">Not Attempted</label>
@@ -128,80 +105,29 @@
             <!-- Tele Page -->
             <div>
                 <body>
-                    <table id="2" style="display: none" class="center scoring">
+                    <table id="2" style="display: none" class="match-table">
                         <tbody>
                             <tr>
                                 <td>&nbsp;</td>
-                                <td>&nbsp;</td>
-                                <td class="tele textcenter">Cones</td>
-                                <td>&nbsp;</td>
-                                <td>&nbsp;</td>
-                                <td class="tele textcenter">Cubes</td>
+                                <td>Cones</td>
+                                <td>Cubes</td>
                             </tr>
                             <tr>
-                                <td class="tele">High</td>
-                                <td class="counter">
-                                    <button class="minus" type="button">-</button>
-                                </td>
-                                <td>
-                                    <input type="number" class="score" id="pg1" value="0">
-                                </td>
-                                <td class="counter">
-                                    <button class="plus" type="button">+</button>
-                                </td>
-                                <td class="counter">
-                                    <button class="minus" type="button">-</button>
-                                </td>
-                                <td>
-                                    <input type="number"  class="score"id="pg1" value="0">
-                                </td>
-                                <td class="counter">
-                                    <button class="plus" type="button">+</button>
-                                </td>
+                                <td>High</td>
+                                <td><button class="minus" type="button">-</button><input type="number" id="pg1" value="0"><button class="plus" type="button">+</button></td>
+                                <td><button class="minus" type="button">-</button><input type="number" id="pg1" value="0"><button class="plus" type="button">+</button></td>
                             </tr>
                             <tr>
-                                <td class="tele">Medium</td>
-                                <td class="counter">
-                                    <button class="minus" type="button">-</button>
-                                </td>
-                                <td >
-                                    <input type="number" class="score" id="pg1" value="0">
-                                </td>
-                                <td class="counter">
-                                    <button class="plus" type="button">+</button>
-                                </td>
-                                <td class="counter">
-                                    <button class="minus" type="button">-</button>
-                                </td>
-                                <td>
-                                    <input type="number" class="score"id="pg1" value="0">
-                                </td>
-                                <td class="counter">
-                                    <button class="plus" type="button">+</button>
-                                </td>
+                                <td>Medium</td>
+                                <td><button class="minus" type="button">-</button><input type="number" id="pg1" value="0"><button class="plus" type="button">+</button></td>
+                                <td><button class="minus" type="button">-</button><input type="number" id="pg1" value="0"><button class="plus" type="button">+</button></td>
                             </tr>
                             <tr>
-                                <td class="tele">Low</td>
-                                <td id="minus">
-                                    <button class="minus" type="button">-</button>
-                                </td>
-                                <td>
-                                    <input type="number" class="score" id="pg1" value="0">
-                                </td>
-                                <td class="counter">
-                                    <button class="plus" type="button">+</button>
-                                </td>
-                                <td class="counter">
-                                    <button class="minus" type="button">-</button>
-                                </td>
-                                <td>
-                                    <input type="number" class="score" id="pg1" value="0">
-                                </td>
-                                <td class="counter">
-                                    <button class="plus" type="button">+</button>
-                                </td>
+                                <td class="auto">Low</td>
+                                <td><button class="minus" type="button">-</button><input type="number" id="pg1" value="0"><button class="plus" type="button">+</button></td>
+                                <td><button class="minus" type="button">-</button><input type="number" id="pg1" value="0"><button class="plus" type="button">+</button></td>
                             </tr>
-                        </tbody>        
+                        </tb>
                     </table>
                     <table id="teletable" style="display: none">
                         <br>
