@@ -32,3 +32,26 @@ p {
   padding: 5px; /* add padding */
   border-radius: 5px; /* add rounded corners */
 }
+
+/* Mobile styles */
+@media (max-width: 480px) {
+  table {
+    width: 100%;
+    max-width: 100%;
+  }
+  td, th {
+    font-size: 14px;
+    padding: 8px;
+    display: block;
+    text-align: center;
+  }
+  td:first-child {
+    font-weight: bold;
+  }
+  td:before {
+    content: attr(data-label);
+    float: left;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+}
