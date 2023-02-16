@@ -1,103 +1,152 @@
+<!-- 
+    Developed By Josh Bakelaar 
+-->
+
 <!DOCTYPE html>
 <html>
     <head>
+        <!-- Set the title -->
         <title>5K24 SPARK</title>
-        <link rel="icon" href="favicon.ico">
+        
+        <!-- Meta tags -->
+        <META NAME="keywords" CONTENT="FRC5024, FRC, Robot, Scouting, QRcode">
+        <META NAME="description" CONTENT="5K24SPARK is a simple and intuitive tool for scouts at an FRC competition. It allows users to easily record and track important data and statistics for each robot they observe. The app generates a QR code at the end of each scouting session that contains ">
+        <META NAME="author" CONTENT="Josh Bakelaar">
+        <META NAME="robots" CONTENT="FOLLOW,INDEX">
+
+        <!-- Set the favicon -->
+        <link rel="icon" href="favicon.ico" />
+
+        <!-- Declare viewport -->
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-        <link rel="stylesheet" href="css/5K24SPARK.css">
+
+        <!-- Link Stylesheets for both sites css and select2 css -->
+        <link rel="stylesheet" href="css/5K24SPARK.css" />
         <link href="css/select2.min.css" rel="stylesheet" />
     </head>
     <body>
         <div>
+            <!-- Site Header -->
             <h1>5K24 SPARK</h1>
+
+            <!-- Header 2 for what page youre on -->
             <h2 id="Name">Pre-Match</h2>
         </div>
-        
-        <input type="button" id="newMatch" value="New Match" onclick="newMatch()" style="display: none" class="newMatch">
+        <!-- New match button which is hidden at first, it will appear on the last page -->
+        <input type="button" id="newMatch" value="New Match" onclick="newMatch()" style="display: none;" class="newMatch" />
+        <!-- This is required by qrcode.js to create a qrcode -->
         <div id="qrcode"></div>
 
-        <!-- Pre Match Page -->
-        <form id = 'myForm'>
-                <table id="0" class="center">
-                    <tbody class="center">
-                        <tr>
-                            <td class="preMatch">Name: <span class="star">*</span></td>
-                            <td>
-                                <select class="nameSelect" id='nameSelect' name="name">
-                                    <option value="Select">Select</option>
-                                    <option>Josh</option>
-                                    <option>Tiet</option>
-                                    <option>Brad</option>
-                                    <option>Colin</option>
-                                    <option>Grant</option>
-                                  </select>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="preMatch">Match #: <span class="star">*</span></td>
-                            <td class="field" >
-                                <input type="number" id='pg0' pattern="\d*" class="preMatch">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="preMatch">Team #: <span class="star">*</span></td>
-                            <td class="field">
-                                <input type="number" id='pg0' pattern="\d*" class="preMatch">
-                            </td>
-                        </tr>
-                    </tbody>        
-                </table>
+        <!-- Surrounded in a form so it is easy to reset all fields -->
+        <form id="myForm">
+            <!-- Pre Match Page -->
+            <table id="0" class="center">
+                <tbody class="center">
+                    <tr>
+                        <!-- Scouters Name -->
+                        <td class="preMatch">Name: <span class="star">*</span></td>
+                        <td>
+                            <!-- FIXME: This section needs to be populated with scouters name -->
+                            <select class="nameSelect" id="nameSelect" name="name">
+                                <option value="Select">Select</option>
+                                <option>Josh</option>
+                                <option>Tiet</option>
+                                <option>Brad</option>
+                                <option>Colin</option>
+                                <option>Grant</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <!-- Match # -->
+                    <tr>
+                        <td class="preMatch">Match #: <span class="star">*</span></td>
+                        <td class="field">
+                            <!-- Can only be entered as a number -->
+                            <input type="number" id="pg0" pattern="\d*" class="preMatch" />
+                        </td>
+                    </tr>
+                    <!-- Team # -->
+                    <tr>
+                        <td class="preMatch">Team #: <span class="star">*</span></td>
+                        <td class="field">
+                            <!-- Can only be entered as a number -->
+                            <input type="number" id="pg0" pattern="\d*" class="preMatch" />
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
 
             <!-- Auto Page -->
+            <!-- By default this section is hidden, only once the user clicks next from prematch it will appear -->
             <div>
                 <body>
-                    <table id="1" style="display: none" class="match-table">
+                    <!-- Set default to none, it will appear one you're on the auto page -->
+                    <!-- This is the table for grid scoring -->
+                    <table id="1" style="display: none;" class="match-table">
                         <tbody>
                             <tr>
+                                <!-- Table headers -->
                                 <td>&nbsp;</td>
                                 <td>Cones</td>
                                 <td>Cubes</td>
                             </tr>
                             <tr>
+                                <!-- Column header -->
                                 <td>High</td>
-                                <td><button class="minus" type="button">-</button><input type="number" class="scoreSpot" id="pg1" value="0"><button class="plus" type="button">+</button></td>
-                                <td><button class="minus" type="button">-</button><input type="number" class="scoreSpot" id="pg1" value="0"><button class="plus" type="button">+</button></td>
+                                <!-- A number input between + and - buttons to increment and decrement score -->
+                                <td><button class="minus" type="button">-</button><input type="number" class="scoreSpot" id="pg1" value="0" /><button class="plus" type="button">+</button></td>
+                                <td><button class="minus" type="button">-</button><input type="number" class="scoreSpot" id="pg1" value="0" /><button class="plus" type="button">+</button></td>
                             </tr>
                             <tr>
+                                <!-- Column header -->
                                 <td>Medium</td>
-                                <td><button class="minus" type="button">-</button><input type="number" class="scoreSpot" id="pg1" value="0"><button class="plus" type="button">+</button></td>
-                                <td><button class="minus" type="button">-</button><input type="number" class="scoreSpot" id="pg1" value="0"><button class="plus" type="button">+</button></td>
+                                <!-- A number input between + and - buttons to increment and decrement score -->
+                                <td><button class="minus" type="button">-</button><input type="number" class="scoreSpot" id="pg1" value="0" /><button class="plus" type="button">+</button></td>
+                                <td><button class="minus" type="button">-</button><input type="number" class="scoreSpot" id="pg1" value="0" /><button class="plus" type="button">+</button></td>
                             </tr>
                             <tr>
-                                <td class="auto">Low</td>
-                                <td><button class="minus" type="button">-</button><input type="number" class="scoreSpot" id="pg1" value="0"><button class="plus" type="button">+</button></td>
-                                <td><button class="minus" type="button">-</button><input type="number" class="scoreSpot" id="pg1" value="0"><button class="plus" type="button">+</button></td>
+                                <!-- Column header -->
+                                <td>Low</td>
+                                <!-- A number input between + and - buttons to increment and decrement score -->
+                                <td><button class="minus" type="button">-</button><input type="number" class="scoreSpot" id="pg1" value="0" /><button class="plus" type="button">+</button></td>
+                                <td><button class="minus" type="button">-</button><input type="number" class="scoreSpot" id="pg1" value="0" /><button class="plus" type="button">+</button></td>
                             </tr>
-                        </tb>
+                        </tbody>
                     </table>
 
-                    <table id="autotable" style="display: none">
+                    <!-- Set default to none, it will appear one you're on the auto page -->
+                    <!-- This table is for seeing if the robot has left the community -->
+                    <table id="autotable" style="display: none;">
                         <tr>
+                            <!-- Check box headers -->
                             <td>&nbsp;</td>
                             <td><h3 class="textcenter">Yes</h3></td>
                             <td><h3 class="textcenter">No</h3></td>
                         </tr>
                         <tr>
+                            <!-- Title question -->
                             <td class="auto">Left Community <span class="star">*</span></td>
-                            <td class="field"><input type='checkbox' class="checkoption" id='pg1' value="Yes"></td>
-                            <td class="field"><input type='checkbox' class="checkoption" id='pg1' value="No"></td>
+                            <!-- Checkboxes one displays Yes, the other No -->
+                            <td class="field"><input type="checkbox" class="checkoption" id="pg1" value="Yes" /></td>
+                            <td class="field"><input type="checkbox" class="checkoption" id="pg1" value="No" /></td>
                         </tr>
                     </table>
-                    <br><br>
-                    <table id="autotable2" style="display: none">
+                    <!-- Breaks to give some space between -->
+                    <br />
+                    <br />
+                    <!-- Set default to none, it will appear one you're on the auto page -->
+                    <!-- This table is for seeing the Charging Station status once auto has ended -->
+                    <table id="autotable2" style="display: none;">
                         <tr>
+                            <!-- Title Question -->
                             <td class="auto">Charging Station <span class="star">*</span></td>
                             <td class="field">
-                                <input type="radio" value="DNE" name="autoCharging" id='pg1'><label class="radioLabel" for="DNE">Docked (Not Balanced)</label>
-                                <br>                                
-                                <input type="radio" value="DE" name="autoCharging" id='pg1'><label class="radioLabel" for="DE">Balanced</label>
-                                <br>
-                                <input type="radio" value="NA" name="autoCharging" id='pg1'><label class="radioLabel" for="NA">Not Attempted</label>
+                                <!-- Radio buttons for determining what the status of the charging station is -->
+                                <input type="radio" value="DNE" name="autoCharging" id="pg1" /><label class="radioLabel" for="DNE">Docked (Not Balanced)</label>
+                                <br />
+                                <input type="radio" value="DE" name="autoCharging" id="pg1" /><label class="radioLabel" for="DE">Balanced</label>
+                                <br />
+                                <input type="radio" value="NA" name="autoCharging" id="pg1" /><label class="radioLabel" for="NA">Not Attempted</label>
                             </td>
                         </tr>
                     </table>
@@ -105,102 +154,128 @@
             </div>
 
             <!-- Tele Page -->
+            <!-- By default this section is hidden, only once the user clicks next from auto it will appear -->
             <div>
                 <body>
-                    <table id="2" style="display: none" class="match-table teleop-scoring">
+                    <!-- Set default to none, it will appear one you're on the tele page -->
+                    <!-- This is the table for grid scoring -->
+                    <table id="2" style="display: none;" class="match-table teleop-scoring">
                         <tbody>
                             <tr>
+                                <!-- Table headers -->
                                 <td>&nbsp;</td>
                                 <td>Cones</td>
                                 <td>Cubes</td>
                             </tr>
                             <tr>
+                                <!-- Column header -->
                                 <td>High</td>
-                                <td><button class="minus" type="button">-</button><input type="number" class="scoreSpot" id="pg1" value="0"><button class="plus" type="button">+</button></td>
-                                <td><button class="minus" type="button">-</button><input type="number" class="scoreSpot" id="pg1" value="0"><button class="plus" type="button">+</button></td>
+                                <!-- A number input between + and - buttons to increment and decrement score -->
+                                <td><button class="minus" type="button">-</button><input type="number" class="scoreSpot" id="pg1" value="0" /><button class="plus" type="button">+</button></td>
+                                <td><button class="minus" type="button">-</button><input type="number" class="scoreSpot" id="pg1" value="0" /><button class="plus" type="button">+</button></td>
                             </tr>
                             <tr>
+                                <!-- Column header -->
                                 <td>Medium</td>
-                                <td><button class="minus" type="button">-</button><input type="number" class="scoreSpot" id="pg1" value="0"><button class="plus" type="button">+</button></td>
-                                <td><button class="minus" type="button">-</button><input type="number" class="scoreSpot" id="pg1" value="0"><button class="plus" type="button">+</button></td>
+                                <!-- A number input between + and - buttons to increment and decrement score -->
+                                <td><button class="minus" type="button">-</button><input type="number" class="scoreSpot" id="pg1" value="0" /><button class="plus" type="button">+</button></td>
+                                <td><button class="minus" type="button">-</button><input type="number" class="scoreSpot" id="pg1" value="0" /><button class="plus" type="button">+</button></td>
                             </tr>
                             <tr>
+                                <!-- Column header -->
                                 <td class="auto">Low</td>
-                                <td><button class="minus" type="button">-</button><input type="number" class="scoreSpot" id="pg1" value="0"><button class="plus" type="button">+</button></td>
-                                <td><button class="minus" type="button">-</button><input type="number" class="scoreSpot" id="pg1" value="0"><button class="plus" type="button">+</button></td>
+                                <!-- A number input between + and - buttons to increment and decrement score -->
+                                <td><button class="minus" type="button">-</button><input type="number" class="scoreSpot" id="pg1" value="0" /><button class="plus" type="button">+</button></td>
+                                <td><button class="minus" type="button">-</button><input type="number" class="scoreSpot" id="pg1" value="0" /><button class="plus" type="button">+</button></td>
                             </tr>
                         </tbody>
                     </table>
-                    <table id="teletable" style="display: none">
+                    <!-- This table is for the robots pickup location -->
+                    <table id="teletable" style="display: none;">
                         <tr>
+                            <!-- Title Question -->
                             <td class="auto">Pickup Location <span class="star">*</span></td>
                             <td class="field">
-                                <input type="radio" id="pg2" name="pickup" value="G"><label class="radioLabel">Ground</label>
-                                <br>
-                                <input type="radio" id="pg2" name="pickup" value="SS"><label class="radioLabel">Single Substation</label>  
-                                <br>
-                                <input type="radio" id="pg2" name="pickup" value="DS"><label class="radioLabel">Double Substation</label> 
+                                <!-- Radio buttons for determining whether the pickup was off of the ground/single substation/ double substation  -->
+                                <input type="radio" id="pg2" name="pickup" value="G" /><label class="radioLabel">Ground</label>
+                                <br />
+                                <input type="radio" id="pg2" name="pickup" value="SS" /><label class="radioLabel">Single Substation</label>
+                                <br />
+                                <input type="radio" id="pg2" name="pickup" value="DS" /><label class="radioLabel">Double Substation</label>
                             </td>
                         </tr>
                     </table>
                 </body>
-            </div> 
+            </div>
 
             <!-- Endgame Page -->
+            <!-- By default this section is hidden, only once the user clicks next from tele it will appear -->
             <div>
                 <body>
-                    <table id="3" style="display: none">
+                    <table id="3" style="display: none;">
                         <tbody>
                             <tr>
+                                <!-- Title Question -->
                                 <td class="end">Climb Status <span class="star">*</span></td>
                                 <td class="field">
-                                    <input type="radio" value="eP" id="pg3" name="endCharging" ><label for="PARK" class="radioLabel">Parked</label>
-                                    <br>
-                                    <input type="radio" value="eDNE" id="pg3" name="endCharging" ><label for="DNE" class="radioLabel">Docked (Not Balanced)</label>
-                                    <br>
-                                    <input type="radio" value="eDE" id="pg3" name="endCharging" ><label for="DE" class="radioLabel">Balanced</label>
-                                    <br>
-                                    <input type="radio" value="eNA" id="pg3" name="endCharging" ><label for="NA" class="radioLabel">Not Attempted</label>
+                                    <!-- Radio buttons to determine the climb status of the robot (Parked, Docked (not level), Balanced, Not Attempted) -->
+                                    <input type="radio" value="eP" id="pg3" name="endCharging" /><label for="PARK" class="radioLabel">Parked</label>
+                                    <br />
+                                    <input type="radio" value="eDNE" id="pg3" name="endCharging" /><label for="DNE" class="radioLabel">Docked (Not Balanced)</label>
+                                    <br />
+                                    <input type="radio" value="eDE" id="pg3" name="endCharging" /><label for="DE" class="radioLabel">Balanced</label>
+                                    <br />
+                                    <input type="radio" value="eNA" id="pg3" name="endCharging" /><label for="NA" class="radioLabel">Not Attempted</label>
                                 </td>
                             </tr>
                             <tr>
+                                <!-- Empty Row for spacing :) -->
                                 <td>&nbsp;</td>
                             </tr>
                             <tr>
+                                <!-- Table headers -->
                                 <td>&nbsp;</td>
                                 <td><h3 class="textcenter">Yes</h3></td>
                                 <td><h3 class="textcenter">No</h3></td>
                             </tr>
                             <tr>
+                                <!-- Title Question -->
                                 <td class="auto">Dead/ Immobilized <span class="star">*</span></td>
-                                <td class="field"><input type='checkbox' class='checkoption2' id='pg3' value="eYes"></td>
-                                <td class="field"><input type='checkbox' class='checkoption2' id='pg3' value="eNo"></td>
+                                <!-- Checkboxes for whether or not robot was dead or immobliized :( -->
+                                <td class="field"><input type="checkbox" class="checkoption2" id="pg3" value="eYes" /></td>
+                                <td class="field"><input type="checkbox" class="checkoption2" id="pg3" value="eNo" /></td>
                             </tr>
-
-                        </tbody>        
+                        </tbody>
                     </table>
                 </body>
             </div>
 
             <!-- QR Code Page -->
+            <!-- By default this section is hidden, only once the user clicks next from endgame it will appear -->
             <div>
                 <body>
-                    <table id="4" style="display: none">
+                    <table id="4" style="display: none;">
                         <tbody>
-                            <div id="qrcode" style="display: none"></div>
-                            <br>
-                        </tbody>        
+                            <div id="qrcode" style="display: none;"></div>
+                            <br />
+                        </tbody>
                     </table>
                 </body>
             </div>
         </form>
-        
-        <input type="button" id="Next" value="Next" onclick="goNext()" class="next">
-        <input type="button" id="Previous" value="Previous" onclick="goPrevious()" style="display: none" class="previous">
-        
-        <script src ="js/jquery-3.6.3.min.js"></script>
+
+        <!-- Next and Previous buttons for navigation -->
+        <input type="button" id="Next" value="Next" onclick="goNext()" class="next" />
+        <input type="button" id="Previous" value="Previous" onclick="goPrevious()" style="display: none;" class="previous" />
+
+        <!-- Scripts -->
+        <!-- Script for jquery -->
+        <script src="js/jquery-3.6.3.min.js"></script>
+        <!-- Script for select2 -->
         <script src="js/select2.min.js"></script>
-        <script type="text/javascript" src="js/qrcode.min.js"></script> 
-        <script src ="js/5K24SPARK.js"></script>
+        <!-- Script for qrcode -->
+        <script type="text/javascript" src="js/qrcode.min.js"></script>
+        <!-- Script for SPARK -->
+        <script src="js/5K24SPARK.js"></script>
     </body>
 </html>
