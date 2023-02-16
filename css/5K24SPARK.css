@@ -33,6 +33,13 @@ p {
   border-radius: 5px; /* add rounded corners */
 }
 
+input[type="number"] {
+  width: 50px;
+}
+input[type="text"] {
+  width: 50px;
+}
+
 /* Mobile styles */
 @media (max-width: 480px) {
   table {
@@ -53,12 +60,6 @@ p {
     float: left;
     font-weight: bold;
     text-transform: uppercase;
-  }
-  input[type="number"] {
-    width: 50px;
-  }
-  input[type="text"] {
-    width: 50px;
   }
 
 }
