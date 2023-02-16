@@ -116,7 +116,7 @@ function goNext() {
         }else if(count == 4){
             document.getElementById("Name").innerHTML = "QR Code";
             document.getElementById("Next").style.display = "none";
-            document.getElementById("qrcode").style.display = "inline";
+            document.getElementById("qrcode").style.display = "table";
             generateCode();
             document.getElementById("newMatch").style.display = "block";
         }
