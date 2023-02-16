@@ -52,6 +52,26 @@ table {
   margin: 10px;
 }
 
+.next, .previous {
+  font-size: 24px;
+  padding: 12px;
+  background-color: #1040af;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.next {
+  right: 0;
+}
+
+.previous {
+  left: 0;
+}
+
 input[type="number"] {
   width: 75px;
 }
