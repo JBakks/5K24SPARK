@@ -19,6 +19,15 @@ h1 {
   font-size: 2em; /* set font size for heading */
   text-align: center; /* center heading */
   margin-bottom: 20px; /* add margin below heading */
+  border-color: #FFE74C;
+  border-style: groove;
+  border-width: 10px;
+  padding: 15px;
+}
+
+h2 {
+  font-size: 1.75em;
+  text-align: center;
 }
 
 p {
@@ -27,15 +36,25 @@ p {
   margin-bottom: 20px; /* add margin below paragraph */
 }
 
+table {
+  margin: 0 auto;
+}
+
 .highlight {
   background-color: #FFE74C; /* set background color to yellow */
   padding: 5px; /* add padding */
   border-radius: 5px; /* add rounded corners */
 }
 
+.preMatch{
+  font-size: 30px;
+  text-align: right;
+  margin: 10px;
+}
+
 input[type="number"] {
-  width: 50px;
+  width: 75px;
 }
 input[type="text"] {
-  width: 50px;
+  width: 75px;
 }
