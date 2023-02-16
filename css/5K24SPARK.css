@@ -21,6 +21,25 @@ body {
   margin: 0; /* remove default margin */
 }
 
+.select2-results__option{
+  color: black;
+}
+
+.select2-selection__rendered{
+  font-size: 1.5em;
+}
+
+.nameSelect{
+  width: 100%;
+  font-size: 2em;
+}
+
+.preMatch{
+  width: 3em;
+  font-size: 2em;
+  text-align: right;
+}
+
 .container {
   max-width: 800px; /* set maximum width of container */
   margin: 0 auto; /* center container */
@@ -67,8 +86,8 @@ table.center {
 }
 
 .preMatch {
-  font-size: 2em;
-  margin: 10px;
+  /* font-size: 2em;
+  margin: 10px; */
 }
 
 .next, .previous {
@@ -111,9 +130,9 @@ table.center {
 input[type="number"] {
   width: 3em;
 }
-input[type="select"] {
+/* input[type="select"] {
   width: 3em;
-}
+} */
 
 option {
   font-size: 16px;

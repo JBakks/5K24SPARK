@@ -5,6 +5,7 @@
         <link rel="icon" href="favicon.ico">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
         <link rel="stylesheet" href="css/5K24SPARK.css">
+        <link href="css/select2.min.css" rel="stylesheet" />
     </head>
     <body>
         <div>
@@ -20,26 +21,28 @@
                 <table id="0" class="center">
                     <tbody class="center">
                         <tr>
-                            <td class="preMatch">Name: </td>
+                            <td class="preMatch">Name: *</td>
                             <td>
-                                <select id='pg0' class="preMatch">
-                                    <option value="default">Select</option>
-                                    <option value="Josh">Josh</option>
-                                    <option value="Brad">Brad</option>
-                                    <option value="Tiet">Tiet</option>
-                                </select>*
+                                <select class="nameSelect" id='nameSelect' name="name">
+                                    <option value="Select">Select</option>
+                                    <option>Josh</option>
+                                    <option>Tiet</option>
+                                    <option>Brad</option>
+                                    <option>Colin</option>
+                                    <option>Grant</option>
+                                  </select>
                             </td>
                         </tr>
                         <tr>
-                            <td class="preMatch">Match #:</td>
+                            <td class="preMatch">Match #: *</td>
                             <td class="field" >
-                                <input type="number" id='pg0' pattern="\d*" class="preMatch">*
+                                <input type="number" id='pg0' pattern="\d*" class="preMatch">
                             </td>
                         </tr>
                         <tr>
-                            <td class="preMatch">Team #: </td>
+                            <td class="preMatch">Team #: *</td>
                             <td class="field">
-                                <input type="number" id='pg0' pattern="\d*" class="preMatch">*
+                                <input type="number" id='pg0' pattern="\d*" class="preMatch">
                             </td>
                         </tr>
                     </tbody>        
@@ -196,6 +199,7 @@
         <input type="button" id="Previous" value="Previous" onclick="goPrevious()" style="display: none" class="previous">
         
         <script src ="js/jquery-3.6.3.min.js"></script>
+        <script src="js/select2.min.js"></script>
         <script type="text/javascript" src="js/qrcode.min.js"></script> 
         <script src ="js/5K24SPARK.js"></script>
     </body>

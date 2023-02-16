@@ -38,8 +38,9 @@ function goNext() {
     
     if(count == 0){
         var data = document.querySelectorAll("[id='pg0']");
+        var name = document.getElementById("nameSelect");
         for(e of data){
-            if(e.value == "" || e.value == "default"){
+            if(e.value == "" || name.options[name.selectedIndex].text == "Select"){
                 alert("Please fill out required fields");
                 return;
             }
@@ -157,12 +158,15 @@ function goPrevious() {
 
 function newMatch(){
     // Reset all inputs
+    var e = document.getElementById("nameSelect");
+    var name = e.options[e.selectedIndex].text;
     document.getElementById("myForm").reset();
     
+    $('#nameSelect').val(name);
+    $('#nameSelect').trigger('change');
     // Change back to pre-match screen
     document.getElementById("Name").innerHTML = "Pre-Match";
     document.getElementById(0).style.display = "table";
-
     
     // Hide QR code screen
     document.getElementById(4).style.display = "none";
@@ -177,11 +181,13 @@ function newMatch(){
     
     // Reset count to 0 to ensure goNext() still works
     count = 0;
+
 }
 
 function generateCode(){
     var data = document.querySelectorAll("[id^='pg']");
-    var str = "";
+    var e = document.getElementById("nameSelect");
+    var str = e.options[e.selectedIndex].text + ",";
  
     for(e of data){        
         if(e.type == "radio"){
@@ -223,6 +229,7 @@ $(document).ready(function(){
     $('.checkoption').click(function() {
      $('.checkoption').not(this).prop('checked', false);
     });
+    $('.nameSelect').select2(); 
 });
 
 $(document).ready(function(){
