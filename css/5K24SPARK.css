@@ -54,4 +54,11 @@ p {
     font-weight: bold;
     text-transform: uppercase;
   }
+  input[type="number"] {
+    width: 50px;
+  }
+  input[type="text"] {
+    width: 50px;
+  }
+
 }
