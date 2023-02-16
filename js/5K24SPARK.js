@@ -225,3 +225,9 @@ $(document).ready(function(){
     });
 });
 
+$(document).ready(function(){
+    $('.checkoption2').click(function() {
+     $('.checkoption2').not(this).prop('checked', false);
+    });
+});
+
