@@ -13,7 +13,7 @@ var teleTable = document.getElementById("teletable");
 
 const minusButtons = document.querySelectorAll('.minus');
 const plusButtons = document.querySelectorAll('.plus');
-const numberInputs = document.querySelectorAll('input[type="number"]');
+const numberInputs = document.querySelectorAll('input[class="scoreSpot"]');
 
 // Add event listeners to the buttons
 minusButtons.forEach((button, index) => {

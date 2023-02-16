@@ -108,10 +108,14 @@ table.center {
 }
 
 input[type="number"] {
-  width: 75px;
+  width: 3em;
 }
-input[type="text"] {
-  width: 75px;
+input[type="select"] {
+  width: 3em;
+}
+
+option {
+  font-size: 16px;
 }
 
 .match-table {
