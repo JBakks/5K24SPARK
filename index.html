@@ -2,9 +2,9 @@
 <html>
     <head>
         <title>5K24 SPARK</title>
-        <link rel="stylesheet" href="css/5K24SPARK.css">
         <link rel="icon" href="favicon.ico">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="css/5K24SPARK.css">
     </head>
     <body>
         <div>
@@ -13,11 +13,12 @@
         </div>
 
         <div id="qrcode"></div>
+        <input type="button" id="newMatch" value="New Match" onclick="newMatch()" style="display: none" class="newMatch">
 
         <!-- Pre Match Page -->
         <form id = 'myForm'>
-                <table id="0">
-                    <tbody>
+                <table id="0" class="center">
+                    <tbody class="center">
                         <tr>
                             <td class="preMatch">Name: </td>
                             <td>
@@ -304,7 +305,6 @@
         
         <input type="button" id="Next" value="Next" onclick="goNext()" class="next">
         <input type="button" id="Previous" value="Previous" onclick="goPrevious()" style="display: none" class="previous">
-        <input type="button" id="newMatch" value="New Match" onclick="newMatch()" style="display: none" class="new">
         
         <script src ="js/jquery-3.6.3.min.js"></script>
         <script type="text/javascript" src="js/qrcode.min.js"></script> 

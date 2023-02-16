@@ -36,52 +36,52 @@ function goNext() {
         return;
     }
     
-    if(count == 0){
-        var data = document.querySelectorAll("[id='pg0']");
-        for(e of data){
-            if(e.value == "" || e.value == "default"){
-                alert("Please fill out required fields");
-                return;
-            }
-        }
-    }else if(count == 1){
-        var yesCheck = document.querySelector("[value='Yes']");
-        var noCheck = document.querySelector("[value='No']");
-        var chargingDNE = document.querySelector("[value='DNE']");
-        var chargingDE = document.querySelector("[value='DE']");
-        var chargingNA = document.querySelector("[value='NA']");
+    // if(count == 0){
+    //     var data = document.querySelectorAll("[id='pg0']");
+    //     for(e of data){
+    //         if(e.value == "" || e.value == "default"){
+    //             alert("Please fill out required fields");
+    //             return;
+    //         }
+    //     }
+    // }else if(count == 1){
+    //     var yesCheck = document.querySelector("[value='Yes']");
+    //     var noCheck = document.querySelector("[value='No']");
+    //     var chargingDNE = document.querySelector("[value='DNE']");
+    //     var chargingDE = document.querySelector("[value='DE']");
+    //     var chargingNA = document.querySelector("[value='NA']");
         
         
-        if(yesCheck.checked == false && noCheck.checked == false){
-            alert("Please fill out required fields");
-            return;
-        }
-        if(chargingDNE.checked == false && chargingDE.checked == false && chargingNA.checked == false){
-            alert("Please fill out required fields");
-            return;
-        }
-    }else if(count == 2){
-        var pickupG = document.querySelector("[value='G']");
-        var pickupSS = document.querySelector("[value='SS']");
-        var pickupDS = document.querySelector("[value='DS']");
+    //     if(yesCheck.checked == false && noCheck.checked == false){
+    //         alert("Please fill out required fields");
+    //         return;
+    //     }
+    //     if(chargingDNE.checked == false && chargingDE.checked == false && chargingNA.checked == false){
+    //         alert("Please fill out required fields");
+    //         return;
+    //     }
+    // }else if(count == 2){
+    //     var pickupG = document.querySelector("[value='G']");
+    //     var pickupSS = document.querySelector("[value='SS']");
+    //     var pickupDS = document.querySelector("[value='DS']");
         
         
-        if(pickupG.checked == false && pickupSS.checked == false && pickupDS.checked == false){
-            alert("Please fill out required fields");
-            return;
-        }
-    }else if(count == 3){
-        var chargingP = document.querySelector("[value='eP']");
-        var chargingDNE = document.querySelector("[value='eDNE']");
-        var chargingB = document.querySelector("[value='eDE']");
-        var chargingNA = document.querySelector("[value='eNA']");
+    //     if(pickupG.checked == false && pickupSS.checked == false && pickupDS.checked == false){
+    //         alert("Please fill out required fields");
+    //         return;
+    //     }
+    // }else if(count == 3){
+    //     var chargingP = document.querySelector("[value='eP']");
+    //     var chargingDNE = document.querySelector("[value='eDNE']");
+    //     var chargingB = document.querySelector("[value='eDE']");
+    //     var chargingNA = document.querySelector("[value='eNA']");
     
-        if(chargingP.checked == false && chargingDNE.checked == false && chargingB.checked == false && chargingNA.checked == false){
-            alert("Please fill out required fields");
-            return;
-        }
+    //     if(chargingP.checked == false && chargingDNE.checked == false && chargingB.checked == false && chargingNA.checked == false){
+    //         alert("Please fill out required fields");
+    //         return;
+    //     }
         
-    }
+    // }
     
     if(allowNext == true){
         var current = document.getElementById(count.toString());
@@ -154,7 +154,8 @@ function newMatch(){
     
     // Change back to pre-match screen
     document.getElementById("Name").innerHTML = "Pre-Match";
-    document.getElementById(0).style.display = "block";
+    document.getElementById(0).style.display = "table";
+
     
     // Hide QR code screen
     document.getElementById(4).style.display = "none";
@@ -163,7 +164,6 @@ function newMatch(){
     document.getElementById("newMatch").style.display = "none";
     document.getElementById("Previous").style.display = "none";
     document.getElementById("qrcode").style.display = "none";
-    QRCode.c
     
     // Display Next Button
     document.getElementById("Next").style.display = "inline";
