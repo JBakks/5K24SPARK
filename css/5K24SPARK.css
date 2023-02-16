@@ -60,8 +60,9 @@ table {
   border: none;
   border-radius: 4px;
   position: absolute;
-  top: 50%;
+  top: 75%;
   transform: translateY(-50%);
+  margin: 15px;
 }
 
 .next {
