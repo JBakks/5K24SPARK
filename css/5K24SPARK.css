@@ -1,0 +1,34 @@
+#qrcode{
+  display: none;
+}
+
+body {
+  background-color: #2469A1; /* set background color to a shade of blue */
+  color: #fff; /* set font color to white */
+  font-family: Arial, sans-serif; /* set font family */
+  margin: 0; /* remove default margin */
+}
+
+.container {
+  max-width: 800px; /* set maximum width of container */
+  margin: 0 auto; /* center container */
+  padding: 20px; /* add padding */
+}
+
+h1 {
+  font-size: 2em; /* set font size for heading */
+  text-align: center; /* center heading */
+  margin-bottom: 20px; /* add margin below heading */
+}
+
+p {
+  font-size: 1.2em; /* set font size for paragraph */
+  line-height: 1.5; /* set line-height for paragraph */
+  margin-bottom: 20px; /* add margin below paragraph */
+}
+
+.highlight {
+  background-color: #FFE74C; /* set background color to yellow */
+  padding: 5px; /* add padding */
+  border-radius: 5px; /* add rounded corners */
+}
