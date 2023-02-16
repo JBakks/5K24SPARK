@@ -137,6 +137,7 @@ input[type="text"] {
   background-color: #f2f2f2;
   height: 25px;
   font-size: 20px;
+  
 }
 
 .match-table{
@@ -171,6 +172,7 @@ input[type="text"] {
   border-collapse: collapse;
   font-size: 16px;
   margin-bottom: 5px;
+  
 }
 
 #autotable tr {
@@ -182,7 +184,7 @@ input[type="text"] {
   padding-right: 15px;
 }
 
-#autotable input[type=checkbox] {
+input[type=checkbox] {
   margin-right: 5px;
   transform: scale(3);
   -webkit-transform: scale(1.5); /* for Safari & Chrome */
@@ -193,15 +195,45 @@ input[type="text"] {
   text-align: left;
 }
 
-#autotable2 td {
+td {
   margin-left: auto;
   white-space: nowrap;
   margin-right: auto;
 }
 
-#autotable2 td.field input[type=radio] {
-  margin: 5px ;
-  margin-left: 20px;
+/* select the teleop scoring table */
+table.teleop-scoring {
+  /* set the table's position to relative so that we can adjust it */
+  position: relative;
+  /* move the table 50 pixels higher */
+  top: -37px;
+}
+
+#teletable td.field {
+  width: 200px;
+  text-align: left;
+}
+
+#teletable td {
+  margin-left: auto;
+  white-space: nowrap;
+  margin-right: auto;
+}
+
+.radioLabel {
+  display: inline-block; /* Make the label appear next to the radio button */
+  margin-right: 10px; /* Add some space between the radio button and the label */
+  text-align: left; /* Align the label to the right side */
+  width: 100px; /* Set the width of the label to a fixed value */
+}
+
+.field input[type="radio"] {
+  display: inline-block; /* Make the radio button appear next to the label */
+  margin-right: 10px; /* Add some space between the radio button and the label */
+  vertical-align: middle; /* Align the radio button to the middle of the label */
   transform: scale(1.5);
   -webkit-transform: scale(1.5); /* for Safari & Chrome */
+  margin: 5px;
 }
+
+
