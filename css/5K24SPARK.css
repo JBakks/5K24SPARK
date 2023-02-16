@@ -66,7 +66,7 @@ table.center {
 .next, .previous {
   font-size: 24px;
   padding: 12px;
-  background-color: #1E5482;
+  background-color: #1040af;
   color: #fff;
   border: none;
   border-radius: 4px;
@@ -114,9 +114,11 @@ input[type="text"] {
   margin: 0 auto;
 }
 
-.match-table td, .match-table th {
+.match-table td,
+.match-table th {
   padding: 10px;
   text-align: center;
+  position: relative;
 }
 
 .match-table th {
@@ -127,16 +129,25 @@ input[type="text"] {
   background-color: #1E5482;
 }
 
-
 .match-table input[type=number] {
   width: 30px;
   text-align: center;
   border: none;
   border-radius: 3px;
   background-color: #f2f2f2;
+  height: 25px;
+  font-size: 20px;
+}
+
+.match-table{
+  display: flex;
+  align-items: center;
+  font-size: 20px;
 }
 
 .match-table button {
+  margin-left: 5px;
+  margin-right: 5px;
   border: none;
   color: white;
   background-color: #007bff;
@@ -148,4 +159,42 @@ input[type="text"] {
 
 .match-table button:hover {
   background-color: #0069d9;
+}
+
+.center {
+  margin: 0 auto;
+}
+
+#autotable, #autotable2 {
+  font-family: 'Arial', sans-serif;
+  border-collapse: collapse;
+  font-size: 20px;
+}
+
+#autotable tr {
+  height: 10px !important;
+}
+
+#autotable td, #autotable th {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+#autotable input[type=checkbox] {
+  margin-right: 5px;
+  transform: scale(3);
+}
+
+#autotable2 td.field {
+  width: 300px;
+  text-align: left;
+}
+
+#autotable2 td.field input[type=radio] {
+  vertical-align: middle;
+  margin-left: 15px;
+  margin-right: 15px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  transform: scale(3);
 }
