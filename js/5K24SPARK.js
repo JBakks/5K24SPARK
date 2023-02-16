@@ -88,13 +88,13 @@ function goNext() {
         current.style.display = "none";
         count += 1;
         var next = document.getElementById(count.toString());
-        next.style.display = "block";
+        next.style.display = "table";
 
         if(count == 0){
             document.getElementById("Name").innerHTML = "Pre-Match";
         }else if(count == 1){
-            autoTable.style.display = "block";
-            autoTableTwo.style.display = "block";
+            autoTable.style.display = "table";
+            autoTableTwo.style.display = "table";
             document.getElementById("Name").innerHTML = "Auto";
             document.getElementById("Previous").style.display = "inline";
         }else if(count == 2){
