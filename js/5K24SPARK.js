@@ -274,7 +274,7 @@ function newMatch(){
     $('#nameSelect').trigger('change');
 
     // Reset team select2
-    $("#mySelect2").val("Select").trigger("change");
+    $("#teamSelect").val("").trigger("change");
 
     // Change back to pre-match screen
     document.getElementById("Name").innerHTML = "Pre-Match";
