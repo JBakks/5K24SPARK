@@ -353,6 +353,18 @@ function generateCode(){
     qrcode.makeCode(str);
 }
 
+$(document).ready(function() {
+    $.get("names.txt", function(data) {
+        var options = data.split("\n");
+        for (var i = 0; i < options.length; i++) {
+            $("#nameSelect").append("<option value='" + options[i] + "'>" + options[i] + "</option>");
+            print(options[i]);
+        }
+        $("#nameSelect").select2();
+    });
+});
+  
+
 // On document launch (JQuery)
 $(document).ready(function(){
     // Make it so only 1 check box can be checked at a time
