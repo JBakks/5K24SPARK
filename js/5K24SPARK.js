@@ -273,8 +273,6 @@ function newMatch(){
     $('#nameSelect').val(name);
     $('#nameSelect').trigger('change');
 
-    $('#teamSelect').text("Select").trigger('change');
-
     // Change back to pre-match screen
     document.getElementById("Name").innerHTML = "Pre-Match";
     document.getElementById(0).style.display = "table";
