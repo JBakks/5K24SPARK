@@ -273,6 +273,10 @@ function newMatch(){
     $('#nameSelect').val(name);
     $('#nameSelect').trigger('change');
 
+    // Reset team select2
+    $('#teamSelect').val("Select");
+    $('#teamSelect').val('change')
+
     // Change back to pre-match screen
     document.getElementById("Name").innerHTML = "Pre-Match";
     document.getElementById(0).style.display = "table";
@@ -368,6 +372,7 @@ $(document).ready(function() {
     });
 });
 
+// Used to populate the select 2 list for team selection
 $(document).ready(function() {
     $.get("2023/windsorTeams.txt", function(data) {
         var options = data.split("\n");
