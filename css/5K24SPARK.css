@@ -37,10 +37,18 @@ span.star {
 /* Styling for selected dropdown option */
 .select2-selection__rendered {
   font-size: 1.5em;
+  width: 100%;
+  text-align: center;
 }
 
-/* Styling for a name selection input */
-.nameSelect .teamSelect {
+/* Styling for a name/team selection input */
+.nameSelect {
+  text-align: center;
+  width: 100%;
+  font-size: 2em;
+}
+.teamSelect {
+  text-align: center;
   width: 100%;
   font-size: 2em;
 }
