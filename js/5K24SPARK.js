@@ -277,6 +277,7 @@ function newMatch(){
         placeholder: "Select"
     });
     $('#teamSelect').val('');
+    $('#teamSelect').text("Select");
     $('#teamSelect').trigger('change');
 
     // Change back to pre-match screen
