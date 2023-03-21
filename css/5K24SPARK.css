@@ -40,7 +40,7 @@ span.star {
 }
 
 /* Styling for a name selection input */
-.nameSelect {
+.nameSelect .teamSelect {
   width: 100%;
   font-size: 2em;
 }
