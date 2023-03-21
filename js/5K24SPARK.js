@@ -273,12 +273,8 @@ function newMatch(){
     $('#nameSelect').val(name);
     $('#nameSelect').trigger('change');
 
-    $("#teamSelect").select2({
-        placeholder: "Select"
-    });
-    $('#teamSelect').val('');
-    $('#teamSelect').text("Select");
-    $('#teamSelect').trigger('change');
+    $('#teamSelect').val('1'); // Select the option with a value of '1'
+    $('#teamSelect').trigger('change'); // Notify any JS components that the value changed
 
     // Change back to pre-match screen
     document.getElementById("Name").innerHTML = "Pre-Match";
