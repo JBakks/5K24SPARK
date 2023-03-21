@@ -353,13 +353,28 @@ function generateCode(){
     qrcode.makeCode(str);
 }
 
+// Used to populate the select 2 list for name selection
 $(document).ready(function() {
-    $.get("names.txt", function(data) {
+    // Path to where your name file is located
+    $.get("2023/names.txt", function(data) {
+        // Populates options by each line
         var options = data.split("\n");
+        // For each line, iterate and append the needed tags
         for (var i = 0; i < options.length; i++) {
             $("#nameSelect").append("<option value='" + options[i] + "'>" + options[i] + "</option>");
         }
+        // Update nameSelect
         $("#nameSelect").select2();
+    });
+});
+
+$(document).ready(function() {
+    $.get("2023/windsorTeams.txt", function(data) {
+        var options = data.split("\n");
+        for (var i = 0; i < options.length; i++) {
+            $("#teamSelect").append("<option value='" + options[i] + "'>" + options[i] + "</option>");
+        }
+        $("#teamSelect").select2();
     });
 });
   
@@ -377,6 +392,8 @@ $(document).ready(function(){
     });
     // This is to set the select as a select2.js
     $('.nameSelect').select2(); 
+    $('.teamSelect').select2(); 
+
 });
 
 

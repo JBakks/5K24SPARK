@@ -46,7 +46,6 @@
                         <!-- Scouters Name -->
                         <td class="preMatch">Name: <span class="star">*</span></td>
                         <td>
-                            <!-- FIXME: This section needs to be populated with scouters name -->
                             <select class="nameSelect" id="nameSelect" name="name">
                                 <option value="Select">Select</option>
                             </select>
@@ -63,10 +62,9 @@
                     <!-- Team # -->
                     <tr>
                         <td class="preMatch">Team #: <span class="star">*</span></td>
-                        <td class="field">
-                            <!-- Can only be entered as a number -->
-                            <input type="number" id="pg0" pattern="\d*" class="preMatch" />
-                        </td>
+                        <select class="teamSelect" id="teamSelect" name="name">
+                            <option value="Select">Select</option>
+                        </select>
                     </tr>
                 </tbody>
             </table>
