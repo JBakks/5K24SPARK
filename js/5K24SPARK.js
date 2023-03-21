@@ -307,6 +307,10 @@ function generateCode(){
     // Iterate through all of the data
     for(e of data){        
         // This section handles what the value will be if the data is a radio button
+        if(e.type == "select"){
+            var team = document.getElementById("nameSelect");
+            str = str + team.options[e.selectedIndex].text + ",";
+        }
         if(e.type == "radio"){
             // Only look at checked radio buttons
             if(e.checked){

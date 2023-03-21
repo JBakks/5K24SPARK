@@ -27,6 +27,7 @@ body {
 
 span.star {
   color:#FFC30B;
+  font-size: 1.5em;
 }
 
 /* Styling for dropdown options */
@@ -43,21 +44,21 @@ span.star {
 
 /* Styling for a name/team selection input */
 .nameSelect {
-  text-align: center;
-  width: 100%;
+  text-align: left;
+  width: 4em;
   font-size: 2em;
 }
 .teamSelect {
-  text-align: center;
-  width: 100%;
+  text-align: left;
+  width: 4em;
   font-size: 2em;
 }
 
 /* Styling for a pre-match input */
 .preMatch {
-  width: 3em;
+  width: 4em;
   font-size: 2em;
-  text-align: right;
+  text-align: left;
 }
 
 /* Styling for a container */
