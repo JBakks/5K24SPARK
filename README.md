@@ -8,25 +8,6 @@
 *** Thanks again! Now go create something AMAZING! :D
 -->
 
-
-
-<!-- PROJECT SHIELDS -->
-<!--
-*** I'm using markdown "reference style" links for readability.
-*** Reference links are enclosed in brackets [ ] instead of parentheses ( ).
-*** See the bottom of this document for the declaration of the reference variables
-*** for contributors-url, forks-url, etc. This is an optional, concise syntax you may use.
-*** https://www.markdownguide.org/basic-syntax/#reference-style-links
--->
-[![Contributors][contributors-shield]][contributors-url]
-[![Forks][forks-shield]][forks-url]
-[![Stargazers][stars-shield]][stars-url]
-[![Issues][issues-shield]][issues-url]
-[![MIT License][license-shield]][license-url]
-[![LinkedIn][linkedin-shield]][linkedin-url]
-
-
-
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
@@ -84,8 +65,6 @@
 ## About The Project
 
 [![5K24SPARK Screen Shot][product-screenshot]](https://example.com)
-
-Here's a blank template to get started: To avoid retyping too much info. Do a search and replace with your text editor for the following: `JBakks`, `5K24SPARK`, `twitter_handle`, `joshbakelaar`, `josh.a.bakelaar@gmail.com`, `josh.a.bakelaar@gmail.com`, `5K24SPARK`, `5K24 SPARK is a FRC (First Robotics Competition) scouting website that teams can use to collect data on other teams. At the end of the match, a QR code is generated to scan the data into Excel/Google Sheets. In addition, 5K24 SPARK is designed to work offline, allowing teams to scout and save data without internet connectivity.`
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
