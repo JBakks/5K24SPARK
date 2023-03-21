@@ -393,9 +393,7 @@ $(document).ready(function(){
     });
     // This is to set the select as a select2.js
     $('.nameSelect').select2(); 
-    $('.teamSelect').select2({
-        placeholder: "Select"
-    }); 
+    $('.teamSelect').select2(); 
 
 });
 
