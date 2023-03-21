@@ -273,6 +273,7 @@ function newMatch(){
     $('#nameSelect').val(name);
     $('#nameSelect').trigger('change');
 
+    $("#teamSelect").val('').trigger('change')
     // Change back to pre-match screen
     document.getElementById("Name").innerHTML = "Pre-Match";
     document.getElementById(0).style.display = "table";
@@ -393,7 +394,9 @@ $(document).ready(function(){
     });
     // This is to set the select as a select2.js
     $('.nameSelect').select2(); 
-    $('.teamSelect').select2(); 
+    $('.teamSelect').select2({
+        placeholder: "Select"
+    }); 
 
 });
 
