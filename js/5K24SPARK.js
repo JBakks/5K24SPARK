@@ -358,7 +358,6 @@ $(document).ready(function() {
         var options = data.split("\n");
         for (var i = 0; i < options.length; i++) {
             $("#nameSelect").append("<option value='" + options[i] + "'>" + options[i] + "</option>");
-            print(options[i]);
         }
         $("#nameSelect").select2();
     });
