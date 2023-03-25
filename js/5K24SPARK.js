@@ -303,13 +303,13 @@ function generateCode(){
     var e = document.getElementById("nameSelect");
     // Create a string and start it with the users name eg "Josh,"
     var str = e.options[e.selectedIndex].text + ",";
+    var e = document.getElementById("teamSelect");
+    // Create a string and start it with the users name eg "Josh,"
+    var str = e.options[e.selectedIndex].text + ",";
     
     // Iterate through all of the data
     for(e of data){        
         // This section handles what the value will be if the data is a radio button
-        if(e.type == "select"){
-            str = str + $('#teamSelect'.find(':selected')) + ",";
-        }
         if(e.type == "radio"){
             // Only look at checked radio buttons
             if(e.checked){
