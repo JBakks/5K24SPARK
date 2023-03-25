@@ -303,12 +303,17 @@ function generateCode(){
     var e = document.getElementById("nameSelect");
     // Create a string and start it with the users name eg "Josh,"
     var str = e.options[e.selectedIndex].text + ",";
-    var e = document.getElementById("teamSelect");
-    // Create a string and start it with the users name eg "Josh,"
-    var str = e.options[e.selectedIndex].text + ",";
+    // Get the match number
+    e = document.getElementById("matchNum");
+    // Add match number to the already created string
+    str = e.value + ",";
+    // Get the team number
+    e = document.getElementById("teamSelect");
+    // Add team number to the already created string
+    str += e.options[e.selectedIndex].text + ",";
     
     // Iterate through all of the data
-    for(e of data){        
+    for(e of data){
         // This section handles what the value will be if the data is a radio button
         if(e.type == "radio"){
             // Only look at checked radio buttons
