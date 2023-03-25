@@ -306,7 +306,7 @@ function generateCode(){
     // Get the match number
     e = document.getElementById("matchNum");
     // Add match number to the already created string
-    str = e.value + ",";
+    str += e.value + ",";
     // Get the team number
     e = document.getElementById("teamSelect");
     // Add team number to the already created string
