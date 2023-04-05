@@ -381,7 +381,8 @@ $(document).ready(function() {
 
 // Used to populate the select 2 list for team selection
 $(document).ready(function() {
-    $.get("2023/windsorTeams.txt", function(data) {
+    // FIXME: replace this .txt with the one containing robots
+    $.get("2023/scienceTeams.txt", function(data) {
         var options = data.split("\n");
         for (var i = 0; i < options.length; i++) {
             $("#teamSelect").append("<option value='" + options[i] + "'>" + options[i] + "</option>");
