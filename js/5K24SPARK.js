@@ -1,412 +1,420 @@
-// Developed by Josh Bakelaar
+/*!
+ * 5k24SPARK.js
+ * Description: Takes in a JSON file and creates objects for a scouting website
+ * Author: Josh Bakelaar
+ * Created Date: 2/25/2024
+ * Modified Date: 2/25/2024
+ */
 
-// Import JQuery
-var script = document.createElement('script');
-script.src = '//query-3.6.3.min.js';
-document.getElementsByTagName('head')[0].appendChild(script);
+document.addEventListener("DOMContentLoaded", function () {
+    const event = jsonData.event;
 
-// Count, to be used for switching between pages without reloading the site
-var count = 0;
-// qrcode, to be used to hold our QRCode object from qrcode.js
-var qrcode = new QRCode("qrcode");
+    // Function for checkbox updating, making it so only one (true or false) can be selected
+    function updateCheckbox(checkedId, uncheckedId) {
+        const checkedCheckbox = document.getElementById(checkedId);
+        const uncheckedCheckbox = document.getElementById(uncheckedId);
 
-// These are different tables which are to be attached to certain pages
-var autoTable = document.getElementById("autotable");
-var autoTableTwo = document.getElementById("autotable2");
-var teleTable = document.getElementById("teletable");
-
-// All minus buttons in the grid scoring section
-const minusButtons = document.querySelectorAll('.minus');
-// All plus buttons in the grid scoring section
-const plusButtons = document.querySelectorAll('.plus');
-// All number inputs in the grid scoring section
-const numberInputs = document.querySelectorAll('input[class="scoreSpot"]');
-
-// Add event listeners to the buttons
-minusButtons.forEach((button, index) => {
-    // When the user presses the - button beside a number input, subtract 1
-    button.addEventListener('click', () => {
-        // Users cant subtract past 0
-        if (numberInputs[index].value > 0) {
-        numberInputs[index].value--;
+        if (checkedCheckbox.checked) {
+            uncheckedCheckbox.checked = false;
         }
-    });
-});
-
-plusButtons.forEach((button, index) => {
-    // When the user presses the + button beside a number input, add 1
-    button.addEventListener('click', () => {
-        numberInputs[index].value++;
-    });
-});
-
-// Function used to go to the next section of the game
-// This function is attached to the next button
-function goNext() {
-    // If on the last page and the next button didn't hide, return so they cant go to another page
-    if(count == 4){
-        return;
     }
-    
-    // This next chunk is to make sure required fields have been filled out, if they havent it shows an alert and doesn't go to the next page
-    // Pre-Match page checks
-    if(count == 0){
-        // Get all data inputs on pre-match page
-        var data = document.querySelectorAll("[id='pg0']");
-        // Get the name input
-        var name = document.getElementById("nameSelect");
-        
-        // Iterate through each data input and ensure they are filled out
-        for(e of data){
-            // If the data is blank or the name has not been changed
-            if(e.value == "" || name.options[name.selectedIndex].text == "Select"){
-                // Send alert
-                alert("Please fill out required fields");
-                // Return out of function.
+
+    // Function to create the "pages" within the 5K24Spark
+    function createPages(jsonData) {
+        // Keep track of what page you are on
+        let currentPageIndex = 0;
+        // Keep track of how many checkboxes you have
+        let checkboxCount = 1;
+        // Keep track of inputed values
+        let collectedValues = "";
+
+        // Function which creates the table too act as the "page"
+        function createTable(page) {
+            // If the name of the page is title "QRCode" do not create a table
+            if(page.name === "QRCode"){
                 return;
             }
+            // Get the data to be put on the page
+            const pageData = page.fields;
+            // Create a div for the table
+            const container = document.createElement("div");
+            container.classList.add("table-container");
+            // Create the table
+            const table = document.createElement("table");
+            // Name the table based on the name given
+            table.id = page.name + "Table";
+
+            // For each input the JSON has create a new row with inputs and labels
+            pageData.forEach(object => {
+                const row = document.createElement("tr");
+                const titleCell = document.createElement("th");
+                
+                // If it is a required object add a "*"
+                if (object.name) {
+                    titleCell.innerHTML = object.required === "yes" ? object.name + ' <span class="required">*</span>' : object.name;
+                }
+
+                // Put the title of the input
+                row.appendChild(titleCell);
+                const inputCell = document.createElement("td");
+                
+                // This controls what objects will be created for inputs, currently supports (text, radio, checkbox, select)
+                switch (object.type) {
+                    // If the object is a text field create one (usually used for number inputs)
+                    case "field":
+                        // Creates a group to put the buttons and input in
+                        const inputGroup = document.createElement("div");
+                        inputGroup.classList.add("input-group"); 
+
+                        if(object.buttons === "yes"){
+                            // Adds a minus button to the left hand side
+                            const minusButton = document.createElement("button");
+                            minusButton.textContent = "-";
+                            minusButton.addEventListener("click", () => decrementValue(object.id));
+                            inputGroup.appendChild(minusButton);
+                        }
+
+                        // Add the text input
+                        const input = document.createElement("input");
+                        input.type = "text";
+                        input.id = object.id;
+                        // Default value is 0
+                        input.value = "0";
+                        // Makes the telephone keyboard pop up for easy number entry
+                        input.inputMode  = "tel"
+                        inputGroup.appendChild(input);
+
+                        if(object.buttons === "yes"){
+                            // Create the plus button on the right hand side
+                            const plusButton = document.createElement("button");
+                            plusButton.textContent = "+";
+                            plusButton.addEventListener("click", () => incrementValue(object.id));
+                            inputGroup.appendChild(plusButton);
+                        }
+                        inputGroup.className = "fieldInput";
+                        inputCell.appendChild(inputGroup);
+                        break;
+                    // If the object is a radio button create one
+                    case "radio":
+                        for (let i = 0; i < object.count; i++) {
+                            const radio = document.createElement("input");
+                            radio.type = "radio";
+                            inputCell.appendChild(radio);
+                        }
+                        break;
+                    // If the object is a checkbox create on
+                    case "checkbox":
+                        // Create a container for grouping checkboxes side by side
+                        const checkboxesGroupContainer = document.createElement("div");
+                        checkboxesGroupContainer.className = "checkboxes-group-container";
+
+                        const labels = ["Yes", "No"];
+                        labels.forEach(label => {
+                            // Create individual container for each checkbox and its label
+                            const checkboxContainer = document.createElement("div");
+                            checkboxContainer.className = "checkbox-container";
+                            
+                            // Create checkbox
+                            const checkbox = document.createElement("input");
+                            checkbox.type = "checkbox";
+                            checkbox.id = `checkbox${label}${object.id}`;
+
+                            // Create label
+                            const labelElement = document.createElement("label");
+                            labelElement.htmlFor = checkbox.id;
+                            labelElement.textContent = label;
+
+                            // Append checkbox and label to their individual container
+                            checkboxContainer.appendChild(checkbox);
+                            checkboxContainer.appendChild(labelElement);
+
+                            // Append the individual container to the parent group container
+                            checkboxesGroupContainer.appendChild(checkboxContainer);
+
+                            checkbox.addEventListener("click", () => updateCheckbox(`checkbox${label}${object.id}`, `checkbox${labels.find(l => l !== label)}${object.id}`));
+                        });
+                        // Append the parent group container to inputCell
+                        inputCell.appendChild(checkboxesGroupContainer);
+                        checkboxCount++;
+                        break;
+                    // If case is a select create one
+                    case "select":
+                        const select = document.createElement("select");
+                        select.id = object.id;
+                        inputCell.appendChild(select);
+                        // Call populate select
+                        populateSelect(object.file, object.id);
+                        break;
+                }
+                // Add the row to the table
+                row.appendChild(inputCell);
+                table.appendChild(row);
+            });
+
+            // Add the table to the container
+            container.appendChild(table);
+            document.body.appendChild(container);
         }
-    // Auto page checks
-    }else if(count == 1){
-        // Get the checkboxes
-        var yesCheck = document.querySelector("[value='Yes']");
-        var noCheck = document.querySelector("[value='No']");
+
+        // Function to increment a value in a text field
+        // Takes in the id of the text field
+        function incrementValue(inputId) {
+            const input = document.getElementById(inputId);
+            const value = parseInt(input.value) || 0;
+            input.value = value + 1;
+        }
+
+        // Function to decrement a value in a text field
+        // Takes in the id of the text field
+        function decrementValue(inputId) {
+            const input = document.getElementById(inputId);
+            const value = parseInt(input.value) || 0;
+            if (value > 0) {
+                input.value = value - 1;
+            }
+        }
+
+        // Function to clear all inputs in the form
+        function clearAllInputs() {
+            const inputs = document.querySelectorAll('input[type="text"], input[type="checkbox"], input[type="radio"], select');
+            inputs.forEach(input => {
+                // Reset text inputs to "0"
+                if (input.type === 'text') {
+                    input.value = '0';
+                // Uncheck radio buttons and checkboxes
+                } else if (input.type === 'checkbox' || input.type === 'radio') {
+                    input.checked = false;
+                // Reset the selects back to "Select", unless it is the name, then leave it
+                } else if (input.tagName.toLowerCase() === 'select') {
+                    if (input.id !== 'names') {
+                        const firstOptionValue = $(input).find('option:first').val();
+                        $(input).val(firstOptionValue).trigger('change.select2');;
+                    }
+                }
+            });
+        }
         
-        // Get each radio button
-        var chargingDNE = document.querySelector("[value='DNE']");
-        var chargingDE = document.querySelector("[value='DE']");
-        var chargingNA = document.querySelector("[value='NA']");
-        
-        // If both checkboxes are NOT checked
-        if(yesCheck.checked == false && noCheck.checked == false){
-            // Send alert
-            alert("Please fill out required fields");
-            // Return out of function
-            return;
-        }
-        // If all radio buttons are NOT checked
-        if(chargingDNE.checked == false && chargingDE.checked == false && chargingNA.checked == false){
-            // Send alert
-            alert("Please fill out required fields");
-            // Return out of function
-            return;
-        }
-    // Tele page checks
-    }else if(count == 2){
-        // Get each radio button
-        var pickupG = document.querySelector("[value='G']");
-        var pickupSS = document.querySelector("[value='SS']");
-        var pickupDS = document.querySelector("[value='DS']");
-        
-        // If all radio buttons are NOT checked
-        if(pickupG.checked == false && pickupSS.checked == false && pickupDS.checked == false){
-            // Send alert
-            alert("Please fill out required fields");
-            // Return out of function
-            return;
-        }
-    // End-game page checks
-    }else if(count == 3){
-        // Get each radio button
-        var chargingP = document.querySelector("[value='eP']");
-        var chargingDNE = document.querySelector("[value='eDNE']");
-        var chargingB = document.querySelector("[value='eDE']");
-        var chargingNA = document.querySelector("[value='eNA']");
-
-        // Get each checkbox
-        var yesCheck = document.querySelector("[value='eYes']");
-        var noCheck = document.querySelector("[value='eNo']");
-
-        // If both checkboxes are not checked
-        if(yesCheck.checked == false && noCheck.checked == false){
-            // Send alert
-            alert("Please fill out required fields");
-            // Return out of function
-            return;
+        // Function attached to newMatch button to create a newMatch
+        function resetToFirstPage() {
+            // Reset page index
+            currentPageIndex = 0;
+            // Hide all tables
+            hideAllTables();
+            // Show first table
+            showCurrentTable();
         }
 
-        // If all radio buttons are NOT checked
-        if(chargingP.checked == false && chargingDNE.checked == false && chargingB.checked == false && chargingNA.checked == false){
-            // Send alert
-            alert("Please fill out required fields");
-            // Return out of function
-            return;
-        }        
-    }
-    
-    // This next section is to change the "page"
-    // I use quotation marks because were not actually changing any page, just hiding tables so the user doesnt need to refresh
-
-    // Get current page # that we are on
-    var current = document.getElementById(count.toString());
-    // Set current page to be invisible
-    current.style.display = "none";
-    // Increment the count, to go to the next page
-    count += 1;
-    // Get the next page by getting the element with id of value of count
-    var next = document.getElementById(count.toString());
-    // Display that page as table view so it displays in the middle
-    next.style.display = "table";
-
-    // Pre-Match
-    if(count == 0){
-        // Change Sub-header to be "Pre-Match"
-        document.getElementById("Name").innerHTML = "Pre-Match";
-    // Auto
-    }else if(count == 1){
-        // Display additional auto tables
-        autoTable.style.display = "table";
-        autoTableTwo.style.display = "table";
-
-        // Change sub-header to be "Auto"
-        document.getElementById("Name").innerHTML = "Auto";
-        // Display Previous button so you can go back a page
-        document.getElementById("Previous").style.display = "inline";
-    // Tele
-    }else if(count == 2){
-        // Hide auto tables used
-        autoTable.style.display = "none";
-        autoTableTwo.style.display = "none";
-
-        // Display additional tele table
-        teleTable.style.display = "table";
-        // Display main tele table
-        document.getElementById("Name").innerHTML = "Tele-Op";
-    // End Game
-    }else if(count == 3){
-        // Hide tele tables
-        teleTable.style.display = "none";
-
-        // Change sub-header to be "End Game"
-        document.getElementById("Name").innerHTML = "End Game";
-    // QR Code
-    }else if(count == 4){
-        // Change sub-header to be "QR Code"
-        document.getElementById("Name").innerHTML = "QR Code";
-        // Hide the Next button because were on the last page
-        document.getElementById("Next").style.display = "none";
-        // Display QR Code in the middle using table
-        document.getElementById("qrcode").style.display = "table";
-        // Call generateCode() which makes the QR Code
-        generateCode();
-        // Display the New Match button
-        document.getElementById("newMatch").style.display = "block";
-    }
-}
-
-// Function which handles going to the previous page
-// This function is called by clicking the previous button
-function goPrevious() {
-
-    // If the previous button didn't get hidden for some reason, dont allow the user to go previous again
-    if(count == 0){
-        return;
-    }
-    
-    // Get the current page # we are on
-    var current = document.getElementById(count.toString());
-    // Set the table with the id # to be invisible
-    current.style.display = "none";
-    // Decrement count to get the page before
-    count -= 1;
-    // Get the previous page by using count
-    var previous = document.getElementById(count.toString());
-    // Display the page at cound
-    previous.style.display = "table";
-    
-    // Prematch page
-    if(count == 0){
-        // Set the sub-header to be "Pre-Match"
-        document.getElementById("Name").innerHTML = "Pre-Match";
-        // Hide the previous button
-        document.getElementById("Previous").style.display = "none";
-
-        // Hide the additional tables needed for auto
-        autoTable.style.display = "none";
-        autoTableTwo.style.display = "none";
-    // Auto Page
-    }else if(count == 1){
-        // Set the sub-header to be "Auto"
-        document.getElementById("Name").innerHTML = "Auto";
-
-        // Show the additional tables used for auto
-        autoTable.style.display = "table";
-        autoTableTwo.style.display = "table";
-
-        // Hide the additional table for tele
-        teleTable.style.display = "none";
-    // Tele page
-    }else if(count == 2){
-        // Set the sub-header to be "Tele-Op"
-        document.getElementById("Name").innerHTML = "Tele-Op";
-        
-        // Show the additional tables used for tele
-        teleTable.style.display = "table";
-    // End Game page
-    }else if(count == 3){
-        // Set the sub-header to be "End Game"
-        document.getElementById("Name").innerHTML = "End Game";
-        // Display the next button
-        document.getElementById("Next").style.display = "inline";
-        // Hide the QR Code
-        document.getElementById("qrcode").style.display = "none";
-        // Hide the New Match button
-        document.getElementById("newMatch").style.display = "none";
-    // QR Code Page
-    }else if(count == 4){
-        // Set the sub-header to be "QR Code"
-        document.getElementById("Name").innerHTML = "QR Code";
-    }
-}
-
-// This function handles the creation of a new match
-function newMatch(){
-    
-    // Get the users name from the name field
-    var e = document.getElementById("nameSelect");
-    var name = e.options[e.selectedIndex].text;
-
-    // Reset all fields
-    document.getElementById("myForm").reset();
-
-    // Set the name as the name used previously for convenience
-    $('#nameSelect').val(name);
-    $('#nameSelect').trigger('change');
-
-    $('#teamSelect').val('Select'); // Select the option with a value of '1'
-    $('#teamSelect').trigger('change'); // Notify any JS components that the value changed
-
-    // Change back to pre-match screen
-    document.getElementById("Name").innerHTML = "Pre-Match";
-    document.getElementById(0).style.display = "table";
-    
-    // Hide QR code screen
-    document.getElementById(4).style.display = "none";
-    
-    // Hide Clear, Previous, and QRCODE
-    document.getElementById("newMatch").style.display = "none";
-    document.getElementById("Previous").style.display = "none";
-    document.getElementById("qrcode").style.display = "none";
-    
-    // Display Next Button
-    document.getElementById("Next").style.display = "inline";
-    
-    // Reset count to 0 to ensure goNext() still works
-    count = 0;
-}
-
-// This function is used to generate the QR Code once the user has completed the form
-function generateCode(){
-    // Get the data on all pages
-    var data = document.querySelectorAll("[id^='pg']");
-    // Get the users name
-    var e = document.getElementById("nameSelect");
-    // Create a string and start it with the users name eg "Josh,"
-    var str = e.options[e.selectedIndex].text + ",";
-    // Get the match number
-    e = document.getElementById("matchNum");
-    // Add match number to the already created string
-    str += e.value + ",";
-    // Get the team number
-    e = document.getElementById("teamSelect");
-    // Add team number to the already created string
-    str += e.options[e.selectedIndex].text + ",";
-    
-    // Iterate through all of the data
-    for(e of data){
-        // This section handles what the value will be if the data is a radio button
-        if(e.type == "radio"){
-            // Only look at checked radio buttons
-            if(e.checked){
-                // If the radio button has the value yes, add yes to the string
-                if(e.value == "Yes"){
-                    str = str + "Yes,";
-                // If the radio button has the value no, add no to the string
-                }else if(e.value == "No"){
-                    str = str + "No,";
-                // If the radio button for Docked(Not Level), Single Substation, or endgame Parked is checked add 1 to the string
-                }else if(e.value == "DNE" || e.value == "SS" || e.value == "eP"){
-                    str = str + "1,";
-                // If the radio button for Docked(Level), Double Substation, or endgame Docked(Not Level) is checked add 2 to the string
-                }else if(e.value == "DE" || e.value == "DS" || e.value == "eDNE"){
-                    str = str + "2,";
-                // If the radio button for Not Attempted, Ground, or endgame Not Attempted is checked add 0 to the string
-                }else if(e.value == "NA" || e.value == "G" || e.value == "eNA"){
-                    str = str + "0,";
-                // If the radio button for endgame Docked Engaged is checked add 3 to the string
-                }else if(e.value == "eDE"){
-                    str = str+ "3,";
+        // Function which checks if it is valid to move to next page
+        // Returns false if you cant move, returns true if you can
+        function canMoveToNextPage() {
+            // Get current page inputs
+            const currentPageData = jsonData.pages[currentPageIndex].fields;
+            // Loop through each input checking to see if the object is required
+            for (const object of currentPageData) {
+                // If the object is required and not filled in, send an alert and dont allow to move to next page
+                if (object.required === "yes") {
+                    if (object.type === "select" && ($("#" + object.id).val() || "").trim().toLowerCase() === "select") {
+                        alert("Please fill the required field before moving to the next page.");
+                        return false;
+                    } else if (object.type === "field" && !$("#match\\#").val()) {
+                        alert("Please fill the required field before moving to the next page.");
+                        return false;
+                    } else if (object.type === "checkbox" && !document.getElementById(`checkboxYes${object.id}`).checked && !document.getElementById(`checkboxNo${object.id}`).checked) {
+                        alert("Please fill the required field before moving to the next page.");
+                        return false;
+                    }
                 }
             }
-            // If not checked continue to next iteration
-            continue;
+            return true;
         }
-        // If the data type is a checkbox
-        if(e.type == "checkbox"){
-            // If the checkbox is checked
-            if(e.checked){
-                // If Yes or eYes(for endgame check) is checked add yes to the string
-                if(e.value == "Yes" || e.value == "eYes"){
-                    str = str + "Yes,";
-                // If No or eNo(for endgame check) is checked add no to the string
-                }else if(e.value == "No" || e.value == "eNo"){
-                    str = str + "No,";
+
+        // Function which sets all pages display to "none"
+        function hideAllTables() {
+            jsonData.pages.forEach(page => {
+                const table = document.getElementById(page.name + "Table");
+                if (table) {
+                    table.style.display = "none";
                 }
-            }
-            // If not checked then continue to next iteration
-            continue;
+            });
         }
         
-        // Append the data at the field to the string
-        str = str + e.value + ",";
+        // Function to show the current page
+        function showCurrentTable() {
+            const pages = jsonData.pages;
+            const currentPage = pages[currentPageIndex];
+            const currentTable = document.getElementById(currentPage.name + "Table");
+
+            // Make sure the previous button is not shown on first page
+            const prevButton = document.getElementById("prevButton");
+            if (prevButton) {
+                prevButton.style.display = currentPageIndex === 0 ? "none" : "";
+            }
+
+            // Make sure the next button is not shown on the last page
+            const nextButton = document.getElementById("nextButton");
+            if (nextButton) {
+                nextButton.style.display = currentPageIndex === pages.length - 1 ? "none" : "";
+            }
+
+            // Make sure the new math button is not shown until the last page
+            const restartButton = document.getElementById("clearButton");
+            if (restartButton){
+                restartButton.style.display = currentPageIndex === pages.length - 1 ? "" : "none";
+            }
+
+            // Make sure the QRcode is only shown on the last page
+            const qrCodeDiv = document.getElementById("qrcode");
+            if (qrCodeDiv) {
+                qrCodeDiv.style.display = currentPageIndex === pages.length - 1 ? "" : "none";
+            }
+
+            // Set display "" for current table
+            if (currentTable) {
+                currentTable.style.display = "";
+            }
+            
+            // If the pages name is "QRCode", call collectvalues() and create the qrcdoe
+            if (currentPage.name === "QRCode") {
+                collectValues();
+                const qrcodeElement = document.getElementById("qrcode");
+                if (qrcodeElement) {
+                    qrcodeElement.innerHTML = "";
+                    const qrcode = new QRCode(qrcodeElement, {
+                        text: collectedValues
+                    });
+                }
+            }
+
+            // Show the title of the page
+            const headingElement = document.getElementById("heading");
+            if (headingElement) {
+                headingElement.textContent = currentPage.name.charAt(0).toUpperCase() + currentPage.name.slice(1);
+            }
+        }
+
+        
+
+        // Function collectValues() gets all inputs
+        function collectValues() {
+            // Create empty string
+            collectedValues = "";
+            const inputs = document.querySelectorAll("input[type=text], input[type=checkbox], input[type=radio]:checked, select");
+            inputs.forEach(input => {
+                // If the input is a checkbox and the input is checked put "Yes" for true and "No" for false
+                if (input.type === "checkbox" && input.checked) {
+                    const checkboxId = input.id;
+                    collectedValues += checkboxId.includes("No") ? "No, " : "Yes, ";
+                // Put value from select or text
+                } else if ((input.type === "text" || input.tagName.toLowerCase() === "select") && input.value.trim() !== "") {
+                    collectedValues += input.value + ", ";
+                }
+            });
+            // Make sure the string is one nice formatted line
+            collectedValues = collectedValues.replace(/,\s*$/, "");
+            collectedValues = collectedValues.replace(/\n/g, ' ');
+        }
+             
+        // Function populateSelect to fill the select with values
+        // Takes in the file path and the id of the select to fill
+        function populateSelect(file, elementId) {
+            // If the select is already populated dont fill
+            if ($("#" + elementId).length > 0) {
+                return;
+            }
+
+            // Get the file from the path
+            $.get(file, function(data) {
+                console.log("Data loaded successfully:", data);
+                // Each option is on a new line
+                const options = data.split("\n");
+                // Create the options
+                options.forEach(option => {
+                    $("#" + elementId).append(`<option value='${option}'>${option}</option>`);
+                });
+
+                // For the teams and names select make a select2
+                if (elementId === "teams" || elementId === "names") {
+                    $("#" + elementId).select2();
+                }
+            })
+            // On file fail
+            .fail(function(jqXHR, textStatus, errorThrown) {
+                console.error("Error loading file: " + file);
+                console.error("Status: " + textStatus);
+                console.error("Error thrown: " + errorThrown);
+            });
+        }
+
+        // For each paage create a table
+        const pages = jsonData.pages;
+        pages.forEach(page => {
+            createTable(page);
+        });
+
+        // Hide all tables
+        hideAllTables();
+        // Show current index
+        showCurrentTable();
+
+        // Create a container for the buttons
+        const buttonContainer = document.createElement("div");
+        buttonContainer.classList.add("button-container"); // Add a class for styling
+
+        // Create the previous button
+        const prevButton = document.createElement("button");
+        prevButton.textContent = "Previous";
+        prevButton.style.display = "none";
+        prevButton.id = "prevButton";
+        prevButton.addEventListener("click", function () {
+            hideAllTables();
+            // If page index is greater than 0
+            if (currentPageIndex > 0) {
+                // Decrement page index
+                currentPageIndex--;
+            }
+            // Show current table
+            showCurrentTable();
+        });
+
+        // Create the next button
+        const nextButton = document.createElement("button");
+        nextButton.textContent = "Next";
+        nextButton.id = "nextButton";
+        nextButton.addEventListener("click", function () {
+            // If canMoveToNextPage returns true
+            if (canMoveToNextPage()) {
+                // Hide all tables
+                hideAllTables();
+                // Increment the page index
+                if (currentPageIndex < jsonData.pages.length - 1) {
+                    currentPageIndex++;
+                }
+                // Show current table
+                showCurrentTable();
+            }
+        });
+
+        // Create the clear button
+        const clearButton = document.createElement("button");
+        clearButton.textContent = "New Match";
+        // When clicked clear all inputs and bring back to first page
+        clearButton.addEventListener("click", function () {
+            clearAllInputs();
+            resetToFirstPage();
+        });
+        clearButton.style.display = "none";
+        clearButton.id = "clearButton";
+
+        // Append buttons to the container
+        buttonContainer.appendChild(prevButton);
+        buttonContainer.appendChild(nextButton);
+        buttonContainer.appendChild(clearButton);
+
+        // Append the container to the document body
+        document.body.appendChild(buttonContainer);
+
     }
-    
-    qrcode.makeCode(str);
-}
 
-// Used to populate the select 2 list for name selection
-$(document).ready(function() {
-    // Path to where your name file is located
-    $.get("2023/names.txt", function(data) {
-        // Populates options by each line
-        var options = data.split("\n");
-        // For each line, iterate and append the needed tags
-        for (var i = 0; i < options.length; i++) {
-            $("#nameSelect").append("<option value='" + options[i] + "'>" + options[i] + "</option>");
-        }
-        // Update nameSelect
-        $("#nameSelect").select2();
-    });
+    // Call create pages function with jsonData
+    createPages(jsonData);
 });
-
-// Used to populate the select 2 list for team selection
-$(document).ready(function() {
-    // FIXME: replace this .txt with the one containing robots
-    $.get("2023/scienceTeams.txt", function(data) {
-        var options = data.split("\n");
-        for (var i = 0; i < options.length; i++) {
-            $("#teamSelect").append("<option value='" + options[i] + "'>" + options[i] + "</option>");
-        }
-        $("#teamSelect").select2();
-    });
-});
-  
-
-// On document launch (JQuery)
-$(document).ready(function(){
-    // Make it so only 1 check box can be checked at a time
-    // This handles the first set of check boxes in auto
-    $('.checkoption').click(function() {
-     $('.checkoption').not(this).prop('checked', false);
-    });
-    // This handles the second set of check boxes in endgame
-    $('.checkoption2').click(function() {
-        $('.checkoption2').not(this).prop('checked', false);
-    });
-    // This is to set the select as a select2.js
-    $('.nameSelect').select2(); 
-    $('.teamSelect').select2(); 
-
-});
-
-

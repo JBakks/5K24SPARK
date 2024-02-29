@@ -1,304 +1,277 @@
-/* Resetting styles for html and body */
-html, body {
-  margin: 0;
-  padding: 0;
-  touch-action: pan-x pan-y;
+/* 
+    Author: Josh Bakelaar, Isabella Lapore
+    Created Date: 2/25/2024
+    Modified Date: 2/25/2024
+*/
+
+/* Colors */
+:root {
+  --primary-color: #f5f5f5; 
+  --secondary-color: #2980b9; 
+  --accent-color: #f39c12; 
+  --text-color: #333; 
+  --table-header-color: #2980b9;
 }
 
-#qrcode {
-  display: none; /* Hide the QR code until it is needed */
-  margin: 0 auto;
-}
-
-/* Centering images and adding margin-top */
-img {
-  margin: 0 auto;
-  margin-top: 15px;
-  border:solid 2px #FFC30B;
-}
-
-/* Global styling for body */
+/* Base styles */
 body {
-  background-color: #2469A1; /* Set the background color to a shade of blue */
-  color: #fff; /* Set font color to white */
-  font-family: Arial, sans-serif; /* Set font family */
-  margin: 0; /* Remove default margin */
+  font-family: 'Roboto', sans-serif;
+  background-color: var(--primary-color);
+  color: var(--text-color);
+  padding: 20px;
 }
 
-span.star {
-  color:#FFC30B;
-  font-size: 1.5em;
+* {
+  touch-action: manipulation;
 }
 
-/* Styling for dropdown options */
-.select2-results__option {
-  color: black;
-}
-
-/* Styling for selected dropdown option */
-.select2-selection__rendered {
-  font-size: 1.5em;
-  width: 100%;
-  text-align: center;
-}
-
-/* Styling for a name/team selection input */
-.nameSelect {
-  text-align: left;
-  width: 4em;
-  font-size: 2em;
-}
-.teamSelect {
-  text-align: left;
-  width: 4em;
-  font-size: 2em;
-}
-
-/* Styling for a pre-match input */
-.preMatch {
-  width: 4em;
-  font-size: 2em;
-  text-align: left;
-}
-
-/* Styling for a container */
-.container {
-  max-width: 800px; /* Set maximum width of container */
-  margin: 0 auto; /* Center container */
-  padding: 20px; /* Add padding */
-}
-
-/* Styling for a heading */
-h1 {
-  margin: 0;
-  font-size: 2em; /* Set font size for heading */
-  text-align: center; /* Center heading */
-  margin-bottom: 20px; /* Add margin below heading */
-  border-color: #FFC30B;
-  border-style: groove;
-  border-width: 10px;
-  padding: 15px;
-}
-
-/* Styling for a subheading */
+/* Centered heading */
 h2 {
-  font-size: 1.75em; /* Set font size for heading 2 */
-  text-align: center; /* Center heading 2*/
-}
-
-/* Styling for a paragraph */
-p {
-  font-size: 1.2em; /* Set font size for paragraph */
-  line-height: 1.5; /* Set line-height for paragraph */
-  margin-bottom: 20px; /* Add margin below paragraph */
-}
-
-/* Styling for a table */
-table {
-  display: table;
-  margin: 0 auto !important;
   text-align: center;
+  color: var(--secondary-color);
 }
 
-/* Centering a table */
-table.center {
-  margin-left: auto;
-  margin-right: auto;
+/* QR code container */
+#qrcode-container {
+  display: flex;
+  justify-content: center;
+  align-items: center; 
 }
 
-/* Styling for previous and next buttons */
-.next, .previous {
-  font-size: 1.3em;
-  padding: 12px;
-  background-color: #1E5482;
+/* QR code */
+#qrcode {
+  border: 5px dashed var(--accent-color);
+  padding: 5px;
+}
+
+/* Banner */
+.banner {
+  background-color: var(--secondary-color);
+  color: var(--primary-color);
+  text-align: center;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.banner h1 {
+  margin: 0;
+  font-size: 32px;
+  text-transform: uppercase;
+}
+
+/* Table container */
+.table-container {
+  max-width: 500px;
+  overflow-x: auto;
+  margin: 0 auto; 
+  border-radius: 8px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Adjust the table width as needed */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #fff;
+  table-layout: fixed;
+  border-radius: 8px;
+}
+
+th, td {
+  text-align: center;
+  padding: 8px;
+  border-bottom: 1px solid #ddd;
   color: #fff;
+}
+
+
+tr {
+  height: 50px;
+}
+
+th {
+  background-color: var(--table-header-color);
+}
+
+table:empty {
+  display: none;
+}
+
+/* Inputs */
+select,
+input[type="text"] {
+  height: 40px;
+  width: 3em;
+  font-size: 1.2em;
+  padding: 6px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.required {
+  font-size: 1.2em;
+  vertical-align: middle;
+  color: var(--accent-color);
+}
+
+select {
+  width: 10em;
+}
+
+html {
+  overflow-x: hidden;
+}
+
+/* Checkboxes */
+.checkbox-container {
+  padding-top: 1em;
+  font-size: 1em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.checkboxes-group-container {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  gap: 2em;
+}
+
+input[type="checkbox"] {
+  margin-bottom: 5px;
+  transform: scale(2.5);
+  cursor: pointer;
+}
+
+.checkbox-container label {
+  margin-top: 5px;
+  color: #333;
+}
+
+/* Button container */
+.button-container {
+  overflow-x: hidden;
+  display: flex;
+  justify-content: center;
+  margin: 20px auto;
+  gap: 10px;
+  width: calc(100% - 0px);
+  max-width: 500px;
+}
+
+button {
+  flex: 1;
+  background-color: var(--secondary-color);
+  color: var(--text-color);
+  padding: 12px 20px;
+  margin: 0.2em;
+  font-size: 1em;
+  color: white;
   border: none;
   border-radius: 4px;
-  position: absolute;
-  bottom: 0%;
-  transform: translateY(-50%);
-  margin: 15px;
+  cursor: pointer;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-/* Styling for next button */
-.next {
-  right: 0;
+button:hover {
+  background-color: #2e94d8;
 }
 
-/* Styling for previous button */
-.previous {
-  left: 0; 
-}
-
-/* Styles for elements with class "newMatch" */
-.newMatch {
-  padding: 10px 20px; /* Add padding to top/bottom and left/right */
-  font-size: 18px; /* Set font size to 18 pixels */
-  background-color: #1E5482; /* Set background color to honey yellow */
-  color: rgb(255, 255, 255); /* Set text color to white */
-  border: none; /* Remove border */
-  border-radius: 4px; /* Add rounded corners */
-  cursor: pointer; /* Show cursor on hover */
-  margin: 0 auto; /* Center element horizontally */
-  margin-top: 10px; /* Add margin on top */
-}
-
-/* Styles for elements with class "center" */
-.center {
-  margin: 0 auto; /* Center element horizontally */
-}
-
-/* Styles for number input fields */
-input[type="number"] {
-  width: 3em; /* Set width to 3 characters */
-}
-
-/* Styles for option elements */
-option {
-  font-size: 16px; /* Set font size to 16 pixels */
-}
-
-/* Styles for table with class "match-table" */
-.match-table {
-  font-family: 'Roboto', sans-serif; /* Set font family */
-  border-collapse: collapse; /* Collapse border between cells */
-  width: 100%; /* Set table width to 100% of its container */
-  margin: 0 auto; /* Center table horizontally */
-}
-
-/* Styles for cells in match table */
-.match-table td,
-.match-table th {
-  padding: 10px; /* Add padding to cells */
-  text-align: center; /* Center text within cells */
-  position: relative; /* Set position to relative */
-}
-
-/* Styles for header cells in match table */
-.match-table th {
-  background-color: #f2f2f2; /* Set background color to light gray */
-}
-
-/* Styles for even rows in match table */
-.match-table tr:nth-child(even) {
-  background-color: #1E5482; /* Set background color to blue */
-}
-
-/* Styles for number input fields in match table */
-.match-table input[type=number] {
-  width: 30px; /* Set width to 30 pixels */
-  text-align: center; /* Center text within input field */
-  border: none; /* Remove border */
-  border-radius: 3px; /* Add rounded corners */
-  background-color: #f2f2f2; /* Set background color to light gray */
-  height: 25px; /* Set height to 25 pixels */
-  font-size: 1em; /* Set font size to 1em */
-}
-
-/* Styles for match table to display as flex */
-.match-table {
-  display: flex; /* Set display to flex */
-  align-items: center; /* Vertically center contents of table */
-}
-
-/* Style for buttons in the match table */
-.match-table button {
-  margin-left: 5px;
-  margin-right: 5px;
+#nextButton {
+  background-color: #3aab6b;
+  color: var(--text-color);
+  padding: 12px 20px;
+  margin: 0.2em;
   border: none;
   color: white;
-  background-color: #007bff;
-  border-radius: 3px;
+  border-radius: 4px;
   cursor: pointer;
-  padding: 8px 10px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+#nextButton:hover {
+  background-color: #45ce81;
+}
+
+#prevButton {
+  background-color: #e74c3c;
+  color: var(--text-color);
+  padding: 12px 20px;
+  margin: 0.2em;
+  border: none;
+  border-radius: 4px;
+  color: white;
+  cursor: pointer;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+#prevButton:hover {
+  background-color: #e37669; 
+}
+
+#clearButton {
+  background-color: var(--accent-color); 
+  color: var(--text-color);
+  padding: 12px 20px;
+  margin: 0.2em;
+  border: none;
   font-size: 1em;
-  font-weight: bold;
+  color: white;
+  border-radius: 4px;
+  cursor: pointer;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-/* Style for hover state of buttons in the match table */
-.match-table button:hover {
-  background-color: #0069d9;
+#clearButton:hover {
+  background-color: #efc074;
 }
 
-/* Center the content in the container */
-.center {
-  margin: 0 auto;
+@media screen and (max-width: 768px) {
+  body {
+    font-size: 1em;
+  }
+
+  select{
+    width: 100%;
+  }
+  
+  /* Prevent horizontal scrolling on the table container */
+  .table-container {
+    overflow-x: hidden; 
+    max-width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* Adjust the width of the Select2 dropdown list */
+  .select2-container--default .select2-dropdown {
+    font-size: 1.2em;
+  }
+
+  /* Adjust the minimum width of the Select2 dropdown and create space for the arrow */
+  .select2-container--default .select2-selection--single {
+    min-width: unset;
+    max-width: calc(100%);
+  }
+
+  /* Adjust the font size of the text inside the Select2 dropdown */
+  .select2-container--default .select2-selection--single .select2-selection__rendered {
+    font-size: 1.2em;
+  }
+  
+
+  #nextButton, #prevButton, #clearButton {
+    flex: 0 0 45%;
+  }
+
+  button {
+    padding: 10px 15px;
+  }
+
+  input[type="text"] {
+    width: 2em;
+  }
 }
-
-/* Style for auto-generated tables */
-#autotable, #autotable2 {
-  font-family: 'Arial', sans-serif;
-  border-collapse: collapse;
-  font-size: 1em;
-  margin-bottom: 5px;
-}
-
-/* Style for rows in auto-generated tables */
-#autotable tr {
-  height: 10px !important; /* Override any previously set height for table rows */
-}
-
-/* Style for table cells in auto-generated tables */
-#autotable td, #autotable th {
-  padding-left: 15px;
-  padding-right: 15px;
-}
-
-/* Style for checkboxes */
-input[type=checkbox] {
-  margin-right: 5px;
-  transform: scale(3);
-  -webkit-transform: scale(1.5); /* Safari and Chrome specific */
-}
-
-/* Style for fields in auto-generated tables */
-#autotable2 td.field {
-  width: 200px;
-  text-align: left;
-}
-
-/* Style for table cells */
-td {
-  margin-left: auto;
-  white-space: nowrap;
-  margin-right: auto;
-}
-
-/* Style for teleop scoring table */
-table.teleop-scoring {
-  position: relative; /* Set table position to relative so we can adjust it */
-  top: -37px; /* Move the table 50 pixels higher */
-}
-
-/* Style for fields in teleop scoring table */
-#teletable td.field {
-  width: 200px;
-  text-align: left;
-}
-
-/* Style for table cells in teleop scoring table */
-#teletable td {
-  margin-left: auto;
-  white-space: nowrap;
-  margin-right: auto;
-}
-
-/* Style for radio button label */
-.radioLabel {
-  display: inline-block; /* Make the label appear next to the radio button */
-  margin-right: 10px; /* Add some space between the radio button and the label */
-  text-align: left; /* Align the label to the right side */
-  width: 100px; /* Set the width of the label to a fixed value */
-}
-
-/* Style for radio buttons in fields */
-.field input[type="radio"] {
-  display: inline-block; /* Make the radio button appear next to the label */
-  margin-right: 10px; /* Add some space between the radio button and the label */
-  vertical-align: middle; /* Align the radio button to the middle of the label */
-  transform: scale(1.5);
-  -webkit-transform: scale(1.5); /* Safari and Chrome specific */
-  margin: 5px; /* Add margin to radio buttons */
-}
-
-
